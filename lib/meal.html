@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="dashboardRest.html"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-5 ms-lg-0 gap-3">
+                   <li class="nav-item">
+                        <a class="nav-link" href="addMeals.html"><i class="bi bi-plus-circle me-2"></i>Aggiungi Piatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 gap-lg-4 ms-3 ms-lg-0">
+                    <h5 class="mt-2" id="username"></h5>
+                    <a href="manageProfile.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-gear"></i> Profilo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+
+        <!-- Meal Content -->
+        <div class="row" id="mealContent">
+            <!-- Meal Image -->
+            <div class="col-12 col-md-8 col-lg-5 col-xl-4 mb-4">
+                <div class="shadow ">
+                    <div class="position-relative">
+                        <img id="mealImage" src="" alt="Immagine del piatto" class="card-img-top meal-image">
+                        <span class="badge bg-warning text-white position-absolute top-0 end-0 m-3 d-none" id="specialtyBadge">
+                            <i class="bi bi-star-fill"></i> Specialità
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Information -->
+            <div class="col-lg-6">
+               <!-- Meal Header -->
+                <div class="mb-4">
+                    <h2 class="mb-2" id="mealName"></h2>
+                    <div class="d-flex align-items-center gap-4 mt-3">
+                        <span class="badge bg-warning fs-6" id="mealCategory"></span>
+                        <div class="d-flex align-items-center text-muted rounded-pill py-1 px-2 bg-light" id="mealAreaSection">
+                            <i class="bi bi-geo-alt me-2 text-danger"></i>
+                            <span id="mealArea"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row ">
+                    <div class="col-12">
+                        <h5 class="mb-3">
+                            <i class="bi bi-list-ul me-2 text-warning"></i>Ingredienti
+                        </h5>
+                        <div id="ingredientsList" class="d-flex gap-2 mb-4 flex-wrap">
+                            <!-- Ingredients will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ingredient Model -->
+                <span id="ingredientModel" class="bg-light py-1 px-2 border border-solid rounded-pill d-none"></span>
+
+                <div>
+                    <small class="text-muted">Tempo di preparazione: <strong class="text-dark" id="estimatedTime"></strong> </small>
+                </div>
+
+                <!-- Instructions Section -->
+                <div class="row mb-4" id="instructionsSection">
+                    <div class="col-12">
+                        <h5 class="mb-3">
+                            <i class="bi bi-book me-2 text-warning"></i>Istruzioni di Preparazione
+                        </h5>
+                        <div class="bg-light p-3 rounded" id="mealInstructions">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Meal Found -->
+        <div class="row justify-content-center d-none" id="noMealFound">
+            <div class="col-md-8 col-lg-6">
+                <div class="text-center">
+                    <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
+                    <h3 class="mt-3">Piatto non trovato</h3>
+                    <p class="text-muted">Il piatto richiesto non è stato trovato.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-1 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-1 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .meal-image {
+            height: 400px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 0.375rem;
+        }
+
+        .alert-danger, .alert-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: 350px;
+        }
+
+        @media (max-width: 768px) {
+            .meal-image {
+                height: 250px;
+            }
+            
+            .container-fluid {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .meal-image {
+                height: 200px;
+            }
+        }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id || userData.role !== 'restaurateur') {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            if (userData.role !== 'restaurateur') {
+                console.error('Accesso non autorizzato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            document.getElementById('username').textContent = userData.username;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const mealId = urlParams.get('id');
+
+            if (!mealId) {
+                showNoMealFound();
+                return;
+            }
+
+            loadMealDetails(mealId);
+        });
+
+        // Function that loads meal details
+        // - It fetches meal details from the server using the meal ID from the URL.
+        // - It updates the meal content section with the fetched data.
+        // - It handles errors and displays appropriate messages if the meal is not found.
+        function loadMealDetails(mealId) {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(`http://localhost:3005/meals/${mealId}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && data.meal) {
+                        currentMeal = data.meal;
+                        document.getElementById('mealImage').src = data.meal.imgUrl;
+                        document.getElementById('mealImage').alt = data.meal.name;
+                        document.getElementById('mealName').textContent = data.meal.name;
+                        document.getElementById('mealCategory').textContent = data.meal.category;
+                        document.getElementById('mealArea').textContent = data.meal.area || 'N/A';
+                        document.getElementById('mealInstructions').textContent = data.meal.instructions || 'Nessuna istruzione disponibile.';
+                        document.getElementById('estimatedTime').textContent = `${data.meal.prepTime} minuti`;
+
+                        const ingredientsList = document.getElementById('ingredientsList');
+                        const model = document.getElementById('ingredientModel');
+                        ingredientsList.innerHTML = '';
+                        data.meal.ingredients.forEach(ingredient => {
+                            const clone = model.cloneNode(true);
+                            clone.textContent = ingredient;
+                            clone.classList.remove('d-none');
+                            ingredientsList.appendChild(clone);
+                        });
+
+                        if (data.meal.specialty) {
+                            document.getElementById('specialtyBadge').classList.remove('d-none');
+                        } else {
+                            document.getElementById('specialtyBadge').classList.add('d-none');
+                        }
+                        document.getElementById('mealContent').classList.remove('d-none');
+                        document.getElementById('noMealFound').classList.add('d-none');
+                    } else {
+                        showNoMealFound();
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante il caricamento del piatto:', error);
+                    showAlert(`Errore durante il caricamento del piatto: ${error.message}`, 'error');
+                    showNoMealFound();
+                });
+        }
+
+        // Function to show "No Meal Found" message
+        // - It hides the meal content section and displays a message indicating that no meal was found.
+        function showNoMealFound() {
+            const mealContent = document.getElementById('mealContent');
+            const noMealFound = document.getElementById('noMealFound');
+            
+            mealContent.classList.add('d-none');
+            noMealFound.classList.remove('d-none');
+        }
+
+        // Function to show alert messages
+        // - It displays a success or error message based on the type of alert.
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

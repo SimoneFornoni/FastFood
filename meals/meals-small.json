@@ -1,0 +1,557 @@
+[
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b28"
+    },
+    "name": "Apple Frangipan Tart",
+    "category": "dessert",
+    "area": "British",
+    "instructions": "Preheat the oven to 200C/180C Fan/Gas 6.\r\nPut the biscuits in a large re-sealable freezer bag and bash with a rolling pin into fine crumbs. Melt the butter in a small pan, then add the biscuit crumbs and stir until coated with butter. Tip into the tart tin and, using the back of a spoon, press over the base and sides of the tin to give an even layer. Chill in the fridge while you make the filling.\r\nCream together the butter and sugar until light and fluffy. You can do this in a food processor if you have one. Process for 2-3 minutes. Mix in the eggs, then add the ground almonds and almond extract and blend until well combined.\r\nPeel the apples, and cut thin slices of apple. Do this at the last minute to prevent the apple going brown. Arrange the slices over the biscuit base. Spread the frangipane filling evenly on top. Level the surface and sprinkle with the flaked almonds.\r\nBake for 20-25 minutes until golden-brown and set.\r\nRemove from the oven and leave to cool for 15 minutes. Remove the sides of the tin. An easy way to do this is to stand the tin on a can of beans and push down gently on the edges of the tin.\r\nTransfer the tart, with the tin base attached, to a serving plate. Serve warm with cream, crème fraiche or ice cream.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "digestive biscuits",
+      "butter",
+      "Bramley apples",
+      "Salted Butter",
+      "caster sugar",
+      "free-range eggs, beaten",
+      "ground almonds",
+      "almond extract",
+      "flaked almonds"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b42"
+    },
+    "name": "Baked salmon with fennel & tomatoes",
+    "category": "second",
+    "area": "British",
+    "instructions": "Heat oven to 180C/fan 160C/gas 4. Trim the fronds from the fennel and set aside. Cut the fennel bulbs in half, then cut each half into 3 wedges. Cook in boiling salted water for 10 mins, then drain well. Chop the fennel fronds roughly, then mix with the parsley and lemon zest.\r\n\r\nSpread the drained fennel over a shallow ovenproof dish, then add the tomatoes. Drizzle with olive oil, then bake for 10 mins. Nestle the salmon among the veg, sprinkle with lemon juice, then bake 15 mins more until the fish is just cooked. Scatter over the parsley and serve.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/1548772327.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Fennel",
+      "Parsley",
+      "Lemon",
+      "Cherry Tomatoes",
+      "Olive Oil",
+      "Salmon",
+      "Black Olives"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b30"
+    },
+    "name": "Beef Brisket Pot Roast",
+    "category": "second",
+    "area": "American",
+    "instructions": "1 Prepare the brisket for cooking: On one side of the brisket there should be a layer of fat, which you want. If there are any large chunks of fat, cut them off and discard them. Large pieces of fat will not be able to render out completely.\r\nUsing a sharp knife, score the fat in parallel lines, about 3/4-inch apart. Slice through the fat, not the beef. Repeat in the opposite direction to make a cross-hatch pattern.\r\nSalt the brisket well and let it sit at room temperature for 30 minutes.\r\n \r\n2 Sear the brisket: You'll need an oven-proof, thick-bottomed pot with a cover, or Dutch oven, that is just wide enough to hold the brisket roast with a little room for the onions.\r\nPat the brisket dry and place it, fatty side down, into the pot and place it on medium high heat. Cook for 5-8 minutes, lightly sizzling, until the fat side is nicely browned. (If the roast seems to be cooking too fast, turn the heat down to medium. You want a steady sizzle, not a raging sear.)\r\nTurn the brisket over and cook for a few minutes more to brown the other side.\r\n\r\n3 Sauté the onions and garlic: When the brisket has browned, remove it from the pot and set aside. There should be a couple tablespoons of fat rendered in the pot, if not, add some olive oil.\r\nAdd the chopped onions and increase the heat to high. Sprinkle a little salt on the onions. Sauté, stirring often, until the onions are lightly browned, 5-8 minutes. Stir in the garlic and cook 1-2 more minutes.\r\n \r\n4 Return brisket to pot, add herbs, stock, bring to simmer, cover, cook in oven: Preheat the oven to 300°F. Use kitchen twine to tie together the bay leaves, rosemary and thyme.\r\nMove the onions and garlic to the sides of the pot and nestle the brisket inside. Add the beef stock and the tied-up herbs. Bring the stock to a boil on the stovetop.\r\nCover the pot, place the pot in the 300°F oven and cook for 3 hours. Carefully flip the brisket every hour so it cooks evenly.\r\n \r\n5 Add carrots, continue to cook: After 3 hours, add the carrots. Cover the pot and cook for 1 hour more, or until the carrots are cooked through and the brisket is falling-apart tender.\r\n6 Remove brisket to cutting board, tent with foil: When the brisket is falling-apart tender, take the pot out of the oven and remove the brisket to a cutting board. Cover it with foil. Pull out and discard the herbs.\r\n7 Make sauce (optional): At this point you have two options. You can serve as is, or you can make a sauce with the drippings and some of the onions. If you serve as is, skip this step.\r\nTo make a sauce, remove the carrots and half of the onions, set aside and cover them with foil. Pour the ingredients that are remaining into the pot into a blender, and purée until smooth. If you want, add 1 tablespoon of mustard to the mix. Put into a small pot and keep warm.\r\n8 Slice the meat across the grain: Notice the lines of the muscle fibers of the roast. This is the \"grain\" of the meat. Slice the meat perpendicular to these lines, or across the grain (cutting this way further tenderizes the meat), in 1/4-inch to 1/2-inch slices.\r\nServe with the onions, carrots and gravy. Serve with mashed, roasted or boiled potatoes, egg noodles or polenta.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Beef Brisket",
+      "Salt",
+      "Onion",
+      "Garlic",
+      "Thyme",
+      "Rosemary",
+      "Bay Leaves",
+      "beef stock",
+      "Carrots",
+      "Mustard",
+      "Potatoes"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b41"
+    },
+    "name": "Beef Lo Mein",
+    "category": "second",
+    "area": "Chinese",
+    "instructions": "STEP 1 - MARINATING THE BEEF\r\nIn a bowl, add the beef, salt, 1 pinch white pepper, 1 Teaspoon sesame seed oil, 1/2 egg, corn starch,1 Tablespoon of oil and mix together.\r\nSTEP 2 - BOILING THE THE NOODLES\r\nIn a 6 qt pot add your noodles to boiling water until the noodles are submerged and boil on high heat for 10 seconds. After your noodles is done boiling strain and cool with cold water.\r\nSTEP 3 - STIR FRY\r\nAdd 2 Tablespoons of oil, beef and cook on high heat untill beef is medium cooked.\r\nSet the cooked beef aside\r\nIn a wok add 2 Tablespoon of oil, onions, minced garlic, minced ginger, bean sprouts, mushrooms, peapods and 1.5 cups of water or until the vegetables are submerged in water.\r\nAdd the noodles to wok\r\nTo make the sauce, add oyster sauce, 1 pinch white pepper, 1 teaspoon sesame seed oil, sugar, and 1 Teaspoon of soy sauce.\r\nNext add the beef to wok and stir-fry",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/1529444830.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Beef",
+      "Salt",
+      "Pepper",
+      "Sesame Seed Oil",
+      "Egg",
+      "Starch",
+      "Oil",
+      "Noodles",
+      "Onion",
+      "Minced Garlic",
+      "Ginger",
+      "Bean Sprouts",
+      "Mushrooms",
+      "Water",
+      "Oyster Sauce",
+      "Sugar",
+      "Soy Sauce"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b5b"
+    },
+    "name": "Cajun spiced fish tacos",
+    "category": "second",
+    "area": "Mexican",
+    "instructions": "Cooking in a cajun spice and cayenne pepper marinade makes this fish super succulent and flavoursome. Top with a zesty dressing and serve in a tortilla for a quick, fuss-free main that's delightfully summery.\r\n\r\nOn a large plate, mix the cajun spice and cayenne pepper with a little seasoning and use to coat the fish all over.\r\n\r\nHeat a little oil in a frying pan, add in the fish and cook over a medium heat until golden. Reduce the heat and continue frying until the fish is cooked through, about 10 minutes. Cook in batches if you don’t have enough room in the pan.\r\n\r\nMeanwhile, prepare the dressing by combining all the ingredients with a little seasoning.\r\nSoften the tortillas by heating in the microwave for 5-10 seconds. Pile high with the avocado, lettuce and spring onion, add a spoonful of salsa, top with large flakes of fish and drizzle over the dressing.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/uvuyxu1503067369.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "cajun",
+      "cayenne pepper",
+      "white fish",
+      "vegetable oil",
+      "flour tortilla",
+      "avocado",
+      "little gem lettuce",
+      "Spring Onions",
+      "salsa",
+      "sour cream",
+      "lemon",
+      "garlic"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b63"
+    },
+    "name": "Chicken Couscous",
+    "category": "second",
+    "area": "Moroccan",
+    "prepTime": 15,
+    "instructions": "Heat the olive oil in a large frying pan and cook the onion for 1-2 mins just until softened. Add the chicken and fry for 7-10 mins until cooked through and the onions have turned golden. Grate over the ginger, stir through the harissa to coat everything and cook for 1 min more.\r\n\r\nTip in the apricots, chickpeas and couscous, then pour over the stock and stir once. Cover with a lid or tightly cover the pan with foil and leave for about 5 mins until the couscous has soaked up all the stock and is soft. Fluff up the couscous with a fork and scatter over the coriander to serve. Serve with extra harissa, if you like.",
+    "imgUrl": "https://www.themealdb.com/images/media/meals/qxytrx1511304021.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Olive Oil",
+      "Onion",
+      "Chicken Breast",
+      "Ginger",
+      "Harissa Spice",
+      "Dried Apricots",
+      "Chickpeas",
+      "Couscous",
+      "Chicken Stock",
+      "Coriander"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641b66"
+    },
+    "name": "Chocolate Raspberry Brownies",
+    "category": "dessert",
+    "area": "American",
+    "instructions": "Heat oven to 180C/160C fan/gas 4. Line a 20 x 30cm baking tray tin with baking parchment. Put the chocolate, butter and sugar in a pan and gently melt, stirring occasionally with a wooden spoon. Remove from the heat.\r\nStir the eggs, one by one, into the melted chocolate mixture. Sieve over the flour and cocoa, and stir in. Stir in half the raspberries, scrape into the tray, then scatter over the remaining raspberries. Bake on the middle shelf for 30 mins or, if you prefer a firmer texture, for 5 mins more. Cool before slicing into squares. Store in an airtight container for up to 3 days.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/yypvst1511386427.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Dark Chocolate",
+      "Milk Chocolate",
+      "Salted Butter",
+      "Light Brown Soft Sugar",
+      "Eggs",
+      "Plain Flour",
+      "Cocoa",
+      "Raspberries"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641ba7"
+    },
+    "name": "Honey Teriyaki Salmon",
+    "category": "second",
+    "area": "Japanese",
+    "instructions": "Mix all the ingredients in the Honey Teriyaki Glaze together. Whisk to blend well. Combine the salmon and the Glaze together.\r\n\r\nHeat up a skillet on medium-low heat. Add the oil, Pan-fry the salmon on both sides until it’s completely cooked inside and the glaze thickens.\r\n\r\nGarnish with sesame and serve immediately.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Salmon",
+      "Olive oil",
+      "Soy Sauce",
+      "Sake",
+      "Sesame Seed"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bb3"
+    },
+    "name": "Japanese Katsudon",
+    "category": "first",
+    "area": "Japanese",
+    "instructions": "STEP 1\r\nHeat the oil in a pan, fry the sliced onion until golden brown, then add the tonkatsu (see recipe here), placing it in the middle of the pan. Mix the dashi, soy, mirin and sugar together and tip three-quarters of the mixture around the tonkatsu. Sizzle for a couple of mins so the sauce thickens a little and the tonkatsu reheats.\r\n\r\nSTEP 2\r\nTip the beaten eggs around the tonkatsu and cook for 2-3 mins until the egg is cooked through but still a little runny. Divide the rice between two bowls, then top each with half the egg and tonkatsu mix, sprinkle over the chives and serve immediately, drizzling with a little more soy if you want an extra umami kick.",
+    "prepTime": 15,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/d8f6qx1604182128.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Vegetable Oil",
+      "Onion",
+      "Pork",
+      "Vegetable Stock",
+      "Soy Sauce",
+      "Mirin",
+      "Sugar",
+      "Eggs",
+      "Sushi Rice",
+      "Chives"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bb5"
+    },
+    "name": "Kentucky Fried Chicken",
+    "category": "second",
+    "area": "American",
+    "instructions": "Preheat fryer to 350°F. Thoroughly mix together all the spice mix ingredients.\r\nCombine spice mix with flour, brown sugar and salt.\r\nDip chicken pieces in egg white to lightly coat them, then transfer to flour mixture. Turn a few times and make sure the flour mix is really stuck to the chicken. Repeat with all the chicken pieces.\r\nLet chicken pieces rest for 5 minutes so crust has a chance to dry a bit.\r\nFry chicken in batches. Breasts and wings should take 12-14 minutes, and legs and thighs will need a few more minutes. Chicken pieces are done when a meat thermometer inserted into the thickest part reads 165°F.\r\nLet chicken drain on a few paper towels when it comes out of the fryer. Serve hot.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/xqusqy1487348868.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Chicken",
+      "Oil",
+      "Egg White",
+      "Flour",
+      "Brown Sugar",
+      "Salt",
+      "paprika",
+      "onion salt",
+      "chili powder",
+      "black pepper",
+      "celery salt",
+      "sage",
+      "garlic powder",
+      "allspice",
+      "oregano",
+      "basil",
+      "marjoram"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bc6"
+    },
+    "name": "Lasagne",
+    "category": "first",
+    "area": "Italian",
+    "instructions": "Heat the oil in a large saucepan. Use kitchen scissors to snip the bacon into small pieces, or use a sharp knife to chop it on a chopping board. Add the bacon to the pan and cook for just a few mins until starting to turn golden. Add the onion, celery and carrot, and cook over a medium heat for 5 mins, stirring occasionally, until softened.\r\nAdd the garlic and cook for 1 min, then tip in the mince and cook, stirring and breaking it up with a wooden spoon, for about 6 mins until browned all over.\r\nStir in the tomato purée and cook for 1 min, mixing in well with the beef and vegetables. Tip in the chopped tomatoes. Fill each can half full with water to rinse out any tomatoes left in the can, and add to the pan. Add the honey and season to taste. Simmer for 20 mins.\r\nHeat oven to 200C/180C fan/gas 6. To assemble the lasagne, ladle a little of the ragu sauce into the bottom of the roasting tin or casserole dish, spreading the sauce all over the base. Place 2 sheets of lasagne on top of the sauce overlapping to make it fit, then repeat with more sauce and another layer of pasta. Repeat with a further 2 layers of sauce and pasta, finishing with a layer of pasta.\r\nPut the crème fraîche in a bowl and mix with 2 tbsp water to loosen it and make a smooth pourable sauce. Pour this over the top of the pasta, then top with the mozzarella. Sprinkle Parmesan over the top and bake for 25–30 mins until golden and bubbling. Serve scattered with basil, if you like.",
+    "prepTime": 15,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/wtsvxx1511296896.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Olive Oil",
+      "Bacon",
+      "Onion",
+      "Celery",
+      "Carrots",
+      "Garlic",
+      "Minced Beef",
+      "Tomato Puree",
+      "Chopped Tomatoes",
+      "Honey",
+      "Lasagne Sheets",
+      "Creme Fraiche",
+      "Mozzarella Balls",
+      "Parmesan Cheese",
+      "Basil Leaves"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bf1"
+    },
+    "name": "Provençal Omelette Cake",
+    "category": "second",
+    "area": "French",
+    "instructions": "Break the eggs into two bowls, five in each. Whisk lightly and season with salt and pepper. Heat the oil in a pan, add the courgettes and spring onions, then fry gently for about 10 mins until softened. Cool, then stir into one bowl of eggs with a little salt and pepper. Add the roasted peppers to the other bowl of eggs with the garlic, chilli, salt and pepper.\r\nHeat a little oil in a 20-23cm frying pan, preferably non-stick. Pour the eggs with courgette into a measuring jug, then pourabout one-third of the mixture into the pan, swirling it to cover the base of the pan. Cook until the egg is set and lightly browned underneath, then cover the pan with a plate and invert the omelette onto it. Slide it back into the pan to cook the other side. Repeat with the remaining mix to make two more omelettes, adding a little oil to the pan each time. Stack the omelettes onto a plate. Make three omelettes in the same way with the red pepper mixture, then stack them on a separate plate.\r\nNow make the filling. Beat the cheese to soften it, then beat in the milk to make a spreadable consistency. Stir in the herbs, salt and pepper. Line a deep, 20-23cm round cake tin with cling film (use a tin the same size as the frying pan). Select the best red pepper omelette and place in the tin, prettiest side down. Spread with a thin layer of cheese filling, then cover with a courgette omelette. Repeat, alternating the layers, until all the omelettes and filling are in the tin, finishing with an omelette. Flip the cling film over the omelette, then chill for up to 24 hrs.\r\nTo serve, invert the omelette cake onto a serving plate and peel off the cling film. Pile rocket on the top and scatter over the cheese, a drizzle of olive oil and a little freshly ground black pepper. Serve cut into wedges.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/qwtrtp1511799242.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Eggs",
+      "Olive Oil",
+      "Courgettes",
+      "Spring Onions",
+      "Red Pepper",
+      "Garlic Clove",
+      "Red Chilli",
+      "Cream Cheese",
+      "Milk",
+      "Chives",
+      "Basil",
+      "Rocket",
+      "Parmesan"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641be4"
+    },
+    "name": "Osso Buco alla Milanese",
+    "category": "first",
+    "area": "Italian",
+    "instructions": "Heat the oven to 300 degrees.\r\nDredging the shanks: pour the flour into a shallow dish (a pie plate works nicely). Season the veal shanks on all sides with salt and pepper. One at a time, roll the shanks around in the flour coat, and shake and pat the shank to remove any excuses flour. Discard the remaining flour.\r\nBrowning the shanks: put the oil and 1 tablespoon of the butter in a wide Dutch oven or heavy braising pot (6 to 7 quart) and heat over medium-high heat. When the butter has melted and the oil is shimmering, lower the shanks into the pot, flat side down; if the shanks won’t fit without touching one another, do this in batches. Brown the shanks, turning once with tongs, until both flat sides are well caramelized, about 5 minutes per side. If the butter-oil mixture starts to burn, lower the heat just a bit. Transfer the shanks to a large platter or tray and set aside.\r\nThe aromatics: pour off and discard the fat from the pot. Wipe out any burnt bits with a damp paper towel, being careful not to remove any delicious little caramelized bits. Ad the remaining 2 tablespoons butter to the pot and melt it over medium heat. When the butter has stopped foaming, add the onion, carrot, celery, and fennel. Season with salt and pepper, stir, and cook the vegetables until they begin to soften but do not brown, about 6 minutes. Stir in the garlic, orange zest, marjoram, and bay leaf, and stew for another minute or two.\r\nThe braising liquid: add the wine, increase the heat to high, and bring to a boil. Boil, stirring occasionally, to reduce the wine by about half, 5 minutes. Add the stock and tomatoes, with their juice, and boil again to reduce the liquid to about 1 cup total, about 10 minutes.\r\nThe braise: Place the shanks in the pot so that they are sitting with the exposed bone facing up, and pour over any juices that accumulated as they sat. Cover with parchment paper, pressing down so the parchment nearly touches the veal and the edges hang over the sides of the pot by about an inch. Cover tightly with the lid, and slide into the lower part of the oven to braise at a gentle simmer. Check the pot after the first 15 minutes, and if the liquid is simmering too aggressively, lower the oven heat by 10 or 15 degrees. Continue braising, turning the shanks and spooning some pan juices over the top after the first 40 minutes, until the meat is completely tender and pulling away from the bone, about 2 hours.\r\nThe gremolata: While the shanks are braising, stir together the garlic, parsley, and lemon zest in a small bowl. Cover with plastic wrap and set aside in a cool place (or the refrigerator, if your kitchen is very warm.)\r\nThe finish: When the veal is fork-tender and falling away from the bone, remove the lid and sprinkle over half of the gremolata. Return the veal to the oven, uncovered, for another 15 minutes to caramelize it some.\r\nUsing a slotted spatula or spoon, carefully lift the shanks from the braising liquid, doing your best to keep them intact. The shanks will be very tender and threatening to fall into pieces, and the marrow will be wobbly inside the bones, so this can be a bit tricky. But if they do break apart, don’t worry, the flavor won’t suffer at all. Arrange the shanks on a serving platter or other large plate, without stacking, and cover with foil to keep warm.\r\nFinishing the sauce: Set the braising pot on top of the stove and evaluate the sauce: if there is a visible layer of fat floating on the surface, use a large spoon to skim it off and discard it. Taste the sauce for concentration of flavor. If it tastes a bit weak or flat, bring it to a boil over high heat, and boil to reduce the volume and intensify the flavor for 5 to 10 minutes. Taste again for salt and pepper. If the sauce wants more zip, stir in a teaspoon or two of the remaining gremolata.\r\nPortioning the veal shanks: if the shanks are reasonably sized, serve one per person. If the shanks are gargantuan or you’re dealing with modest appetites, pull apart the larger shanks, separating them at their natural seams, and serve smaller amounts. Be sure to give the marrow bones to whomever prizes them most.\r\nServing: Arrange the veal shanks on warm dinner plates accompanied by the risotto, if serving. Just before carrying the plates to the table, sprinkle on the remaining gremolata and then spoon over a generous amount of sauce – the contact with the hot liquid will aromatize the gremolata and perk up everyone’s appetite with the whiff of garlic and lemon.",
+    "prepTime": 20,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/wwuqvt1487345467.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Veal",
+      "Flour",
+      "Olive Oil",
+      "Butter",
+      "Onion",
+      "Carrots",
+      "Celery",
+      "Fennel",
+      "Garlic",
+      "Orange Zest",
+      "Marjoram",
+      "Bay Leaf",
+      "Dry White Wine",
+      "Chicken Stock",
+      "Tomatoes",
+      "Parsley",
+      "Garlic",
+      "Lemon Zest"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641beb"
+    },
+    "name": "Pancakes",
+    "category": "dessert",
+    "area": "American",
+    "instructions": "Put the flour, eggs, milk, 1 tbsp oil and a pinch of salt into a bowl or large jug, then whisk to a smooth batter. Set aside for 30 mins to rest if you have time, or start cooking straight away.\r\nSet a medium frying pan or crêpe pan over a medium heat and carefully wipe it with some oiled kitchen paper. When hot, cook your pancakes for 1 min on each side until golden, keeping them warm in a low oven as you go.\r\nServe with lemon wedges and sugar, or your favourite filling. Once cold, you can layer the pancakes between baking parchment, then wrap in cling film and freeze for up to 2 months.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/rwuyqx1511383174.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Flour",
+      "Eggs",
+      "Milk",
+      "Sunflower Oil",
+      "Sugar",
+      "Raspberries",
+      "Blueberries"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bf0"
+    },
+    "name": "Pear Tarte Tatin",
+    "category": "dessert",
+    "area": "French",
+    "instructions": "Core the pears, then peel as neatly as possible and halve. If you like, they can be prepared up to a day ahead and kept in the fridge, uncovered, so that they dry out.\r\nTip the sugar, butter, star anise, cardamom and cinnamon into an ovenproof frying pan, about 20cm wide, and place over a high heat until bubbling. Shake the pan and stir the buttery sauce until it separates and the sugar caramelises to a toffee colour.\r\nLay the pears in the pan, then cook in the sauce for 10-12 mins, tossing occasionally, until completely caramelised. Don’t worry about them burning – they won’t – but you want to caramelise them as much as possible. Splash in the brandy and let it flambé, then set the pears aside.\r\nHeat oven to 200C/fan 180C/gas 6. Roll the pastry out to the thickness of a £1 coin. Using a plate slightly larger than the top of the pan, cut out a circle, then press the edges of the circle of pastry to thin them out.\r\nWhen the pears have cooled slightly, arrange them in the pan, cut side up, in a floral shape, with the pears around the edge pointing inwards. Rest the cinnamon stick on the top in the centre, with the cardamom pods scattered around.\r\nDrape the pastry over the pears, then tuck the edges down the pan sides and under the fruit (see Gordon’s guide). Pierce the pastry a few times, then bake for 15 mins. If a lot of juice bubbles up the side of the pan, pour it off at this stage (see guide). Reduce oven to 180C/fan 160C/gas 4 and bake for 15 mins more until the pastry is golden. Leave the tart to stand for 10 mins, then invert it carefully onto a serving dish.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/rxvxrr1511797671.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Pears",
+      "Caster Sugar",
+      "Butter",
+      "Star Anise",
+      "Cardamom",
+      "Cinnamon",
+      "Brandy",
+      "Puff Pastry"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bf6"
+    },
+    "name": "Pizza Express Margherita",
+    "category": "first",
+    "area": "Italian",
+    "instructions": "1 Preheat the oven to 230°C.\r\n\r\n2 Add the sugar and crumble the fresh yeast into warm water.\r\n\r\n3 Allow the mixture to stand for 10 – 15 minutes in a warm place (we find a windowsill on a sunny day works best) until froth develops on the surface.\r\n\r\n4 Sift the flour and salt into a large mixing bowl, make a well in the middle and pour in the yeast mixture and olive oil.\r\n\r\n5 Lightly flour your hands, and slowly mix the ingredients together until they bind.\r\n\r\n6 Generously dust your surface with flour.\r\n\r\n7 Throw down the dough and begin kneading for 10 minutes until smooth, silky and soft.\r\n\r\n8 Place in a lightly oiled, non-stick baking tray (we use a round one, but any shape will do!)\r\n\r\n9 Spread the passata on top making sure you go to the edge.\r\n\r\n10 Evenly place the mozzarella (or other cheese) on top, season with the oregano and black pepper, then drizzle with a little olive oil.\r\n\r\n11 Cook in the oven for 10 – 12 minutes until the cheese slightly colours.\r\n\r\n12 When ready, place the basil leaf on top and tuck in!",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Water",
+      "Sugar",
+      "Yeast",
+      "Plain Flour",
+      "Salt",
+      "Olive Oil",
+      "Passata",
+      "Mozzarella",
+      "Oregano",
+      "Basil",
+      "Black Pepper"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641bfb"
+    },
+    "name": "Portuguese prego",
+    "category": "second",
+    "area": "Portuguese",
+    "instructions": "STEP 1\r\n\r\nRub the garlic over the steaks then put in a sandwich bag and tip in the olive oil, sherry vinegar and parsley stalks. Smoosh everything together, then use a rolling pin to bash the steaks a few times. Leave for 1-2 hours.\r\n\r\nSTEP 2\r\n\r\nTo make the sauce, put all the ingredients into a blender with 1 tbsp water and whizz until as smooth as possible. This will make more than you’ll need for the recipe but will keep for a week in an airtight jar.\r\n\r\nSTEP 3\r\n\r\nHeat a griddle or frying pan to high. Brush away the garlic and parsley stalks from the steaks and season well. Sear the steaks for 2 minutes on each side then rest on a plate. Put the ciabatta halves onto the plate, toasted-side down, to soak up any juices.\r\n\r\nSTEP 4\r\n\r\nSlice the steaks then stuff into the rolls with the green sauce and rocket.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/ewcikl1614348364.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Garlic",
+      "Beef Fillet",
+      "Olive Oil",
+      "Vinegar",
+      "Parsley",
+      "Ciabatta",
+      "Rocket",
+      "Basil Leaves",
+      "Parsley",
+      "Jalapeno",
+      "Vinegar",
+      "Spring Onions",
+      "Garlic",
+      "Caster Sugar"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641c05"
+    },
+    "name": "Rock Cakes",
+    "category": "dessert",
+    "area": "British",
+    "instructions": "Preheat oven to 180C/350F/Gas 4 and line a baking tray with baking parchment.\r\nMix the flour, sugar and baking powder in a bowl and rub in the cubed butter until the mixture looks like breadcrumbs, then mix in the dried fruit.\r\nIn a clean bowl, beat the egg and milk together with the vanilla extract.\r\nAdd the egg mixture to the dry ingredients and stir with a spoon until the mixture just comes together as a thick, lumpy dough. Add a teaspoon more milk if you really need it to make the mixture stick together.\r\nPlace golfball-sized spoons of the mixture onto the prepared baking tray. Leave space between them as they will flatten and spread out to double their size during baking.\r\nBake for 15-20 minutes, until golden-brown. Remove from the oven, allow to cool for a couple of minutes then turn them out onto a wire rack to cool.",
+    "prepTime": 5,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/tqrrsq1511723764.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Self-raising Flour",
+      "Caster Sugar",
+      "Baking Powder",
+      "Butter",
+      "Dried Fruit",
+      "Eggs",
+      "Milk",
+      "Vanilla Extract"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641c0d"
+    },
+    "name": "Spaghetti Bolognese",
+    "category": "first",
+    "area": "Italian",
+    "instructions": "Put the onion and oil in a large pan and fry over a fairly high heat for 3-4 mins. Add the garlic and mince and fry until they both brown. Add the mushrooms and herbs, and cook for another couple of mins.\r\n\r\nStir in the tomatoes, beef stock, tomato ketchup or purée, Worcestershire sauce and seasoning. Bring to the boil, then reduce the heat, cover and simmer, stirring occasionally, for 30 mins.\r\n\r\nMeanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet instructions. Drain well, run hot water through it, put it back in the pan and add a dash of olive oil, if you like, then stir in the meat sauce. Serve in hot bowls and hand round Parmesan cheese, for sprinkling on top.",
+    "prepTime": 20,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "onions",
+      "olive oil",
+      "garlic",
+      "lean minced beef",
+      "mushrooms",
+      "dried oregano",
+      "tomatoes",
+      "hot beef stock",
+      "tomato puree",
+      "worcestershire sauce",
+      "spaghetti",
+      "parmesan"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641c48"
+    },
+    "name": "Tonkatsu pork",
+    "category": "second",
+    "area": "Japanese",
+    "instructions": "STEP 1\r\nRemove the large piece of fat on the edge of each pork loin, then bash each of the loins between two pieces of baking parchment until around 1cm in thickness – you can do this using a meat tenderiser or a rolling pin. Once bashed, use your hands to reshape the meat to its original shape and thickness – this step will ensure the meat is as succulent as possible.\r\n\r\nSTEP 2\r\nPut the flour, eggs and panko breadcrumbs into three separate wide-rimmed bowls. Season the meat, then dip first in the flour, followed by the eggs, then the breadcrumbs.\r\n\r\nSTEP 3\r\nIn a large frying or sauté pan, add enough oil to come 2cm up the side of the pan. Heat the oil to 180C – if you don’t have a thermometer, drop a bit of panko into the oil and if it sinks a little then starts to fry, the oil is ready. Add two pork chops and cook for 1 min 30 secs on each side, then remove and leave to rest on a wire rack for 5 mins. Repeat with the remaining pork chops.\r\n\r\nSTEP 4\r\nWhile the pork is resting, make the sauce by whisking the ingredients together, adding a splash of water if it’s particularly thick. Slice the tonkatsu and serve drizzled with the sauce.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/lwsnkl1604181187.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Pork Chops",
+      "Flour",
+      "Eggs",
+      "Breadcrumbs",
+      "Vegetable Oil",
+      "Tomato Ketchup",
+      "Worcestershire Sauce",
+      "Oyster Sauce",
+      "Caster Sugar"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641c4e"
+    },
+    "name": "Venetian Duck Ragu",
+    "category": "first",
+    "area": "Italian",
+    "instructions": "Heat the oil in a large pan. Add the duck legs and brown on all sides for about 10 mins. Remove to a plate and set aside. Add the onions to the pan and cook for 5 mins until softened. Add the garlic and cook for a further 1 min, then stir in the cinnamon and flour and cook for a further min. Return the duck to the pan, add the wine, tomatoes, stock, herbs, sugar and seasoning. Bring to a simmer, then lower the heat, cover with a lid and cook for 2 hrs, stirring every now and then.\r\nCarefully lift the duck legs out of the sauce and place on a plate – they will be very tender so try not to lose any of the meat. Pull off and discard the fat, then shred the meat with 2 forks and discard the bones. Add the meat back to the sauce with the milk and simmer, uncovered, for a further 10-15 mins while you cook the pasta.\r\nCook the pasta following pack instructions, then drain, reserving a cup of the pasta water, and add the pasta to the ragu. Stir to coat all the pasta in the sauce and cook for 1 min more, adding a splash of cooking liquid if it looks dry. Serve with grated Parmesan, if you like.",
+    "prepTime": 20,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/qvrwpt1511181864.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Olive Oil",
+      "Duck Legs",
+      "Onions",
+      "Garlic",
+      "Cinnamon",
+      "Plain Flour",
+      "Red Wine",
+      "Chopped Tomatoes",
+      "Chicken Stock Cube",
+      "Rosemary",
+      "Bay Leaves",
+      "Sugar",
+      "Milk",
+      "Paccheri Pasta",
+      "Parmesan Cheese"
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "681c717ea327223432641c53"
+    },
+    "name": "Wontons",
+    "category": "second",
+    "area": "Chinese",
+    "instructions": "Combine pork, garlic, ginger, soy sauce, sesame oil, and vegetables in a bowl.\r\nSeparate wonton skins.\r\nPlace a heaping teaspoon of filling in the center of the wonton.\r\nBrush water on 2 borders of the skin, covering 1/4 inch from the edge.\r\nFold skin over to form a triangle, sealing edges.\r\nPinch the two long outside points together.\r\nHeat oil to 450 degrees and fry 4 to 5 at a time until golden.\r\nDrain and serve with sauce.",
+    "prepTime": 10,
+    "imgUrl": "https://www.themealdb.com/images/media/meals/1525876468.jpg",
+    "isSpecialty": false,
+    "ingredients": [
+      "Pork",
+      "Garlic Clove",
+      "Ginger",
+      "Soy Sauce",
+      "Sesame Seed Oil",
+      "Carrots",
+      "Celery",
+      "Spring Onions",
+      "Wonton Skin",
+      "Oil",
+      "Water"
+    ]
+  }
+]

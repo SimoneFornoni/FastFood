@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="#" id="homeLink"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3" id="navbarItems">
+                    <li class="nav-item cust-nav-item d-none">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                    <li class="nav-item rest-nav-item d-none">
+                        <a class="nav-link" href="addMeals.html"><i class="bi bi-plus-circle me-2"></i>Aggiungi Piatti</a>
+                    </li>
+                    <li class="nav-item rest-nav-item d-none">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <h5 class="me-3 mt-2" id="username"></h5>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        
+        <!-- Header -->
+        <section class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="fw-bold text-dark">
+                        <i class="bi bi-person-gear me-2 text-warning"></i>Gestione Profilo
+                    </h1>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-warning" onclick="resetForm()">
+                            <i class="bi bi-arrow-clockwise me-1"></i>Reset
+                        </button>
+                        <button class="btn btn-outline-danger" onclick="logout()">
+                            <i class="bi bi-box-arrow-right"></i> Esci
+                        </button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">
+                            <i class="bi bi-trash3 me-1"></i>Elimina Profilo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Form -->
+        <section class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-4">
+                            <i class="bi bi-person-fill me-2 text-warning"></i>Informazioni Personali
+                        </h5>
+                        
+                        <form id="profileForm">
+                            <div class="row mb-3 g-3">
+                                <div class="col-12 col-md-6">
+                                    <label for="name" class="form-label fw-semibold">Nome</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                        <input type="text" class="form-control" id="name">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="lastName" class="form-label fw-semibold">Cognome</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                        <input type="text" class="form-control" id="lastName">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password" class="form-label fw-semibold">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" placeholder="Lascia vuoto per mantenere la password attuale">
+                                </div>
+                            </div>
+
+                            <!-- Customer-specific fields -->
+                            <div id="customerFields" class="d-none">
+                                <h6 class="text-secondary mb-3 mt-4">
+                                    <i class="bi bi-gear-fill me-2"></i>Preferenze Cliente
+                                </h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-12 col-md-6">
+                                        <label for="paymentMethod" class="form-label fw-semibold">Metodo di Pagamento</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
+                                            <select class="form-select" id="paymentMethod">
+                                                <option value="creditCard">Carta di Credito</option>
+                                                <option value="prepaidCard">Carta Prepagata</option>
+                                                <option value="paypal">PayPal</option>
+                                                <option value="cash">In Cassa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="preference" class="form-label fw-semibold">Preferenza Culinaria</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-heart"></i></span>
+                                            <select class="form-select" id="preference">
+                                                <option value="first">Primi Piatti</option>
+                                                <option value="second">Secondi Piatti</option>
+                                                <option value="dessert">Dessert</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Restaurateur-specific fields -->
+                            <div id="restaurateurFields" class="d-none">
+                                <h6 class="text-secondary mb-3 mt-4">
+                                    <i class="bi bi-building me-2"></i>Dati Aziendali
+                                </h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-12 col-md-6">
+                                        <label for="phone" class="form-label fw-semibold">Telefono</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                            <input type="tel" class="form-control" id="phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="pIva" class="form-label fw-semibold">Partita IVA</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-file-earmark-text"></i></span>
+                                            <input type="text" class="form-control" id="pIva">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row-reverse gap-3">
+                                <button type="button" class="btn btn-warning btn-lg fw-semibold" onclick="updateProfile()">
+                                    <i class="bi bi-check-circle me-2"></i>Aggiorna Profilo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteProfileModalLabel">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Conferma Eliminazione Profilo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Sei sicuro di voler eliminare definitivamente il tuo profilo?</p>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-1"></i>
+                        <span class="deleteWarningText">Verranno eliminati tutti i tuoi dati personali e non potrai più accedere al servizio.</span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Annulla
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="deleteProfile()">
+                        <i class="bi bi-trash3 me-1"></i>Elimina Definitivamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-1 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-1 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .alert-danger , .alert-success{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: 350px;
+        }
+
+        .card {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .d-flex.justify-content-between .btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id) {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            setupNavbar();
+            loadUserProfile();
+        });
+
+        // Function to set up navbar based on user role
+        // - It sets the home link and additional navbar items based on the user's role
+        // - It also updates the delete warning text based on the role
+        function setupNavbar() {
+            const navbarItems = document.getElementById('navbarItems');
+            const homeLink = document.getElementById('homeLink');
+            const username = document.getElementById('username');
+
+            username.textContent = userData.username;
+
+            if (userData.role === 'restaurateur') {
+                homeLink.href = 'dashboardRest.html';
+                document.querySelectorAll('.rest-nav-item').forEach(item => item.classList.remove('d-none'));
+                document.querySelectorAll('.cust-nav-item').forEach(item => item.classList.add('d-none'));
+
+                if (!userData.restaurantId) {
+                    document.querySelectorAll('.rest-nav-item a').forEach(item => item.classList.add('disabled'));
+                }
+            } else {
+                homeLink.href = 'restaurants.html';
+                document.querySelectorAll('.cust-nav-item').forEach(item => item.classList.remove('d-none'));
+                document.querySelectorAll('.rest-nav-item').forEach(item => item.classList.add('d-none'));
+            }
+        }
+
+        // Function to load user profile data
+        // - It fetches the user data based on the role and populates the form fields
+        // - It handles both restaurateur and customer roles
+        function loadUserProfile() {
+            let url = '';
+
+            if (userData.role === 'restaurateur') {
+                url = `http://localhost:3005/restaurateurs/${userData._id}`;
+            } else {
+                url = `http://localhost:3005/customers/${userData._id}`;
+            }
+            
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && (data.restaurateur || data.customer)) {
+                        if (userData.role === 'restaurateur') {
+                            document.getElementById('name').placeholder = data.restaurateur.name;
+                            document.getElementById('lastName').placeholder = data.restaurateur.lastName;
+                            document.getElementById('email').placeholder = data.restaurateur.email;
+                            document.getElementById('phone').placeholder = data.restaurateur.phone;
+                            document.getElementById('pIva').placeholder = data.restaurateur.pIva;
+                            document.getElementById('restaurateurFields').classList.remove('d-none');
+
+                            const deleteWarningText = document.querySelector('.deleteWarningText');
+                            deleteWarningText.textContent += ' Se hai un ristorante associato, questo verrà eliminato insieme alle specialità ed al suo menu.';
+                        } else {
+                            document.getElementById('name').placeholder = data.customer.name;
+                            document.getElementById('lastName').placeholder = data.customer.lastName;
+                            document.getElementById('email').placeholder = data.customer.email;
+                            document.getElementById('paymentMethod').value = data.customer.paymentMethod;
+                            document.getElementById('preference').value = data.customer.preference;
+                            document.getElementById('customerFields').classList.remove('d-none');
+                        }
+                    } else if (data.error) {
+                        showAlert('Errore nel caricamento del profilo: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento del profilo:', error);
+                    showAlert('Errore nel caricamento del profilo: ' + error.message, 'error');
+                });
+        }
+
+        // Function to update user profile
+        // - It collects form data and sends a PUT request to update the user profile
+        // - It handles both restaurateur and customer roles
+        // - It updates the session storage with the new username if name or lastName are changed
+        function updateProfile() {
+            event.preventDefault(); // Prevent any form submission
+            
+            const role = userData.role === 'restaurateur' ? 'restaurateurs' : 'customers';
+            const updateData = {
+                name: document.getElementById('name').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            let url = '';
+
+            if (userData.role === 'restaurateur') {
+                updateData.phone = document.getElementById('phone').value;
+                updateData.pIva = document.getElementById('pIva').value;
+                url = `http://localhost:3005/restaurateurs/${userData._id}`;
+            } else {
+                updateData.paymentMethod = document.getElementById('paymentMethod').value;
+                updateData.preference = document.getElementById('preference').value;
+                url = `http://localhost:3005/customers/${userData._id}`;
+            }
+
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updateData)
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showAlert(data.message, 'success');
+
+                        if (updateData.name || updateData.lastName) {
+                            if (updateData.name) {
+                                userData.username = updateData.name;
+                            } else {
+                                userData.username = document.getElementById('name').placeholder;
+                            }
+                            if (updateData.lastName) {
+                                userData.username += ' ' + updateData.lastName;
+                            } else {
+                                userData.username += ' ' + document.getElementById('lastName').placeholder;
+                            }
+
+                            sessionStorage.setItem('userData', JSON.stringify(userData));
+                            setupNavbar();
+                        }
+
+                        if (updateData.preference) {
+                            userData.preference = updateData.preference;
+                            sessionStorage.setItem('userData', JSON.stringify(userData));
+                        }
+                        
+                        document.getElementById('password').value = '';
+                    } else if (data.error) {
+                        showAlert('Errore nell\'aggiornamento del profilo: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nell\'aggiornamento del profilo: ', error);
+                    showAlert('Errore nell\'aggiornamento del profilo: ' + error.message, 'error');
+                });
+        }
+
+        // Function to delete user profile
+        // - It sends a DELETE request to remove the user profile
+        // - It clears the session storage and redirects to the login page upon success
+        function deleteProfile() {
+            let url = '';
+
+            if (userData.role === 'restaurateur') {
+                url = `http://localhost:3005/restaurateurs/${userData._id}`;
+            } else {
+                url = `http://localhost:3005/customers/${userData._id}`;
+            }
+
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showAlert('Profilo eliminato con successo', 'success');
+                        
+                        // Clear session storage and redirect to login
+                        sessionStorage.removeItem('userData');
+                        
+                        setTimeout(() => {
+                            window.location.href = '../index.html';
+                        }, 2000);
+                    } else if (data.error) {
+                        showAlert('Errore nell\'eliminazione del profilo: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante l\'eliminazione dell\'utente: ', error);
+                    showAlert('Errore durante l\'eliminazione dell\'utente: ' + error.message, 'error');
+                });
+            const modal = bootstrap.Modal.getInstance(document.getElementById('deleteProfileModal'));
+            modal.hide();
+        }
+
+        // Function to reset form to original values
+        function resetForm() {
+            loadUserProfile();
+            document.getElementById('password').value = '';
+            showAlert('Form ripristinato ai valori originali', 'success');
+        }
+
+        // Function to logout user
+        function logout() {
+            sessionStorage.removeItem('userData');
+            window.location.href = '../index.html';
+        }
+
+        // Function to show alert messages
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

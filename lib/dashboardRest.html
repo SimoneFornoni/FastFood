@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="dashboardRest.html"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-5 ms-lg-0 gap-3">
+                   <li class="nav-item">
+                        <a class="nav-link" href="addMeals.html"><i class="bi bi-plus-circle me-2"></i>Aggiungi Piatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 gap-lg-4 ms-3 ms-lg-0">
+                    <h5 class="mt-2" id="username"></h5>
+                    <a href="manageProfile.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-gear"></i> Profilo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4 mb-3">
+
+        <!-- Header -->
+        <section class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2><i class="bi bi-shop text-warning"></i> Dashboard Ristorante</h2>
+                    <div>
+                        <button class="btn btn-success d-none" id="createRestaurantBtn" data-bs-toggle="modal" data-bs-target="#restaurantModal">
+                            <i class="bi bi-plus-circle"></i> Crea Ristorante
+                        </button>
+                        <button class="btn btn-outline-danger me-2" id="editRestaurantBtn" data-bs-toggle="modal" data-bs-target="#restaurantModal">
+                            <i class="bi bi-pencil"></i> Modifica Ristorante
+                        </button>
+                        <button class="btn btn-warning mt-3 mt-md-0" id="deleteRestaurantBtn" onclick="openDeleteModal('restaurant')">
+                            <i class="bi bi-pause-circle"></i> Chiudi Attività
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- No Restaurant Alert -->
+        <div class="alert alert-info d-none" id="noRestaurantAlert">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+                <div>
+                    <h5 class="alert-heading mb-1">Benvenuto!</h5>
+                    <p class="mb-0">Non hai ancora un ristorante associato al tuo account. Clicca su "Crea Ristorante" per iniziare.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant Content -->
+        <section id="restaurantContent">
+            <div class="row mb-4 ">
+
+                <!-- Restaurant Details -->
+                <div class="col-lg-8">
+                    <div class="card h-100 shadow border-0">
+                        <div class="card-header bg-warning text-white">
+                            <h5 class="mb-0"><i class="bi bi-info-circle"></i> Informazioni Ristorante</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 id="restaurantName"></h4>
+                                    <p class="text-body-secondary mb-2">
+                                        <i class="bi bi-geo-alt"></i> <span id="restaurantAddress"></span>
+                                    </p>
+                                    <p class="text-body-secondary mb-2">
+                                        <i class="bi bi-telephone"></i> <span id="restaurantPhone"></span>
+                                    </p>
+                                    <p class="text-body-secondary mb-2">
+                                        <i class="bi bi-envelope"></i> <span id="restaurantEmail"></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Descrizione:</h6>
+                                    <p id="restaurantDescription" class="text-body-secondary"></p>
+                                    <h6>Orario:</h6>
+                                    <p class="text-body-secondary mb-0">
+                                        <i class="bi bi-clock"></i> 
+                                        <span id="restaurantWorkingTime"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Stats -->
+                <div class="col-lg-4 mt-3 mt-lg-0">
+                    <div class="row">
+                        <div class="col-6 col-lg-12 mb-3">
+                            <div class="text-center p-3 bg-light rounded restaurant-stat-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="bi bi-receipt text-warning fs-4"></i>
+                                    <div class="text-center">
+                                        <div class="fw-bold fs-5" id="totalOrders"></div>
+                                        <small class="text-muted">Ordini Totali</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12 mb-3">
+                            <div class="text-center p-3 bg-light rounded restaurant-stat-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="bi bi-currency-euro text-warning fs-4"></i>
+                                    <div class="text-center">
+                                        <div class="fw-bold fs-5" id="totalRevenue"></div>
+                                        <small class="text-muted">Ricavi Totali</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12 mb-3">
+                            <div class="text-center p-3 bg-light rounded restaurant-stat-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="bi bi-hourglass-split text-warning fs-4"></i>
+                                    <div class="text-center">
+                                        <div class="fw-bold fs-5" id="pendingOrders"></div>
+                                        <small class="text-muted">In Preparazione</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12">
+                            <div class="text-center p-3 bg-light rounded restaurant-stat-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="bi bi-clock text-warning fs-4"></i>
+                                    <div class="text-center">
+                                        <div class="fw-bold fs-5" id="estimatedTime"></div>
+                                        <small class="text-muted">Tempo di Attesa</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant Menu -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-danger text-white">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="bi bi-menu-button-wide"></i> Gestione Menu</h5>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- Categories Tabs -->
+                            <ul class="nav nav-pills w-100 gap-3" id="menuTabs" role="tablist">
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button class="nav-link active w-100 rounded-pill border-0 bg-danger fw-bold py-2" id="firsts-tab" data-bs-toggle="tab" data-bs-target="#firsts" type="button" role="tab">
+                                        Primi
+                                    </button>
+                                </li>
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button class="nav-link w-100 rounded-pill border border-danger text-warning fw-bold py-2" id="seconds-tab" data-bs-toggle="tab" data-bs-target="#seconds" type="button" role="tab">
+                                        Secondi
+                                    </button>
+                                </li>
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button class="nav-link w-100 rounded-pill border border-danger text-warning fw-bold py-2" id="desserts-tab" data-bs-toggle="tab" data-bs-target="#desserts" type="button" role="tab">
+                                        Dolci
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content mt-3 ms-md-3 ms-lg-5" id="menuTabsContent">
+                                <div class="tab-pane fade show active" id="firsts" role="tabpanel" tabindex="0">
+                                    <div class="row gap-5">
+                                        <!-- Meals with category first will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="seconds" role="tabpanel" tabindex="0">
+                                    <div class="row gap-5">
+                                        <!-- Meals with category second will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="desserts" role="tabpanel" tabindex="0">
+                                    <div class="row gap-5">
+                                        <!-- Meals with category dessert will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant MenuItem Card -->
+            <div id="mealCardModel" class="card menu-item-card col-md-5 col-lg-3 mb-3 d-none position-relative">
+                <span class="badge bg-warning text-white position-absolute top-0 end-0 m-2 d-none specialty-badge">
+                    <i class="bi bi-star-fill"></i> Specialità
+                </span>
+                <div class="card-body">
+                    <img class="img-fluid mb-2">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="card-title mb-0 meal-name"></h6>
+                        <div class="dropdown dropstart">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-gear"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item meal-update-btn" href="#"><i class="bi bi-pencil"></i> Modifica</a></li>
+                                <li><a class="dropdown-item text-danger meal-delete-btn" href="#"><i class="bi bi-trash"></i> Elimina</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="card-text small text-body-secondary meal-ingredients"></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-danger fw-bold meal-price"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Restaurant Modal (Create/Edit) -->
+    <div class="modal fade" id="restaurantModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restaurantModalTitle">Crea Ristorante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="restaurantForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nome Ristorante</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-shop"></i></span>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Telefono</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="street" class="form-label">Via</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-signpost"></i></span>
+                                    <input type="text" class="form-control" id="street">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="streetNumber" class="form-label">Civico</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-signpost"></i></span>
+                                    <input type="text" class="form-control" id="streetNumber">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="city" class="form-label">Città</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-houses"></i></span>
+                                    <input type="text" class="form-control" id="city">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="cap" class="form-label">CAP</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calculator"></i></span>
+                                    <input type="text" class="form-control" id="cap">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="openingTime" class="form-label">Orario di Apertura</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-clock"></i></span>
+                                    <input type="time" class="form-control" id="openingTime">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="closingTime" class="form-label">Orario di Chiusura</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-clock"></i></span>
+                                    <input type="time" class="form-control" id="closingTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrizione</label>
+                            <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-body-text"></i></span>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-warning" id="saveRestaurantBtn" onclick="saveRestaurant()">Salva Ristorante</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Meal Modal -->
+    <div class="modal fade" id="editMealModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifica <span></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editMealForm">
+                        <input type="hidden" id="editMealId" />
+                        <input type="hidden" id="editIsSpecialty" />
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editMealPrice" class="form-label">Prezzo (€)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-currency-euro"></i></span>
+                                    <input type="number" class="form-control" id="editMealPrice" step="0.01" min="0" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editMealDiscount" class="form-label">Sconto (%)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                                    <input type="number" class="form-control" id="editMealDiscount" min="0" max="99" placeholder="0">
+                                </div>
+                                <div class="form-text">Lascia vuoto o 0 per nessuno sconto</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Specialty meal additional fields -->
+                        <div id="specialtyFields" class="d-none">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editMealName" class="form-label">Nome Piatto</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-egg-fried"></i></span>
+                                        <input type="text" class="form-control" id="editMealName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editMealCategory" class="form-label">Categoria</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-tags"></i></span>
+                                        <select class="form-select" id="editMealCategory">
+                                            <option value="first">Primo</option>
+                                            <option value="second">Secondo</option>
+                                            <option value="dessert">Dolce</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editMealInstructions" class="form-label">Istruzioni</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-list-columns"></i></span>
+                                    <textarea class="form-control" id="editMealInstructions" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editMealThumb" class="form-label">URL Immagine</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-card-image"></i></span>
+                                    <input type="url" class="form-control" id="editMealThumb">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editMealIngredients" class="form-label">Ingredienti (separati da virgola)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-list-stars"></i></span>
+                                    <textarea class="form-control" id="editMealIngredients" rows="2" placeholder="pomodoro, mozzarella, basilico"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editMealArea" class="form-label">Area</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-globe-europe-africa"></i></span>
+                                    <input type="text" class="form-control" id="editMealArea">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warningsecondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-warning" onclick="saveMealChanges()">Salva Modifiche</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteModalLabel">
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Annulla
+                    </button>
+                    <button type="button" class="btn btn-danger"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-1 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-1 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+    .meal-card {
+        transition: transform 0.2s ease-in-out;
+        border: 1px solid #e9ecef;
+    }
+
+    .meal-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .meal-card img {
+        height: 120px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    /* Custom nav-pills styling */
+    .nav-pills .nav-link {
+        transition: all 0.3s ease;
+    }
+
+    .nav-pills .nav-link:not(.active) {
+        background-color: transparent !important;
+        border: 2px solid #fc5667 !important;
+        color: #fc5667 !important;
+    }
+
+    .nav-pills .nav-link:not(.active):hover {
+        background-color: #fc5667 !important;
+        color: white !important;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: #fc5667 !important;
+        color: white !important;
+        border: 2px solid #fc5667 !important;
+    }
+
+    /* Restaurant Stats Hover Effects */
+    .restaurant-stat-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .restaurant-stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        background-color: #fff3cd !important;
+    }
+
+    .restaurant-stat-card:hover i {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    .alert-danger , .alert-success{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        width: 350px;
+    }
+
+    @media (max-width: 768px) {
+        .container-fluid {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .d-flex.justify-content-between .btn {
+            width: 100%;
+        }
+    }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id) {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            if (userData.role !== 'restaurateur') {
+                console.error('Accesso non autorizzato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            document.getElementById('username').textContent = userData.username;
+            loadRestaurantDetails();
+        });
+
+        // Function that loads restaurant informations
+        // - This function sends a GET request, fetching the restaurant data associated with the logged-in user.
+        // - It updates the UI with the restaurant details if available.
+        // - If no restaurant is found, it shows an alert and enables the "Create Restaurant" button.
+        function loadRestaurantDetails() {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(`http://localhost:3005/restaurants/owner/${userData._id}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && data.restaurant) {
+                        userData.restaurantId = data.restaurant._id;
+                        sessionStorage.setItem('userData', JSON.stringify(userData));
+
+                        document.getElementById('restaurantName').textContent = data.restaurant.name;
+                        document.getElementById('restaurantAddress').textContent = data.restaurant.address;
+                        document.getElementById('restaurantPhone').textContent = data.restaurant.phone;
+                        document.getElementById('restaurantDescription').textContent = data.restaurant.description || 'Nessuna descrizione disponibile';
+                        document.getElementById('restaurantWorkingTime').textContent = `${data.restaurant.openingTime} - ${data.restaurant.closingTime}`;
+                        
+                        document.getElementById('noRestaurantAlert').classList.add('d-none');
+                        document.getElementById('restaurantContent').style.display = 'block';
+                        document.getElementById('createRestaurantBtn').classList.add('d-none');
+                        document.getElementById('editRestaurantBtn').style.display = 'inline-block';
+                        document.getElementById('deleteRestaurantBtn').style.display = 'inline-block';
+                        document.getElementById('restaurantModalTitle').textContent = 'Modifica Ristorante';
+
+                        document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                            link.classList.remove('disabled');
+                        });
+
+                        loadRestaurantStats();
+                        loadMenu();
+                    } else if (data.error) {
+                        document.getElementById('noRestaurantAlert').classList.remove('d-none');
+                        document.getElementById('restaurantContent').style.display = 'none';
+                        document.getElementById('createRestaurantBtn').classList.remove('d-none');
+                        document.getElementById('editRestaurantBtn').style.display = 'none';
+                        document.getElementById('deleteRestaurantBtn').style.display = 'none';
+                        document.getElementById('restaurantModalTitle').textContent = 'Crea Ristorante';
+                        document.querySelectorAll('.navbar .nav-link').forEach(link => {
+                            link.classList.add('disabled');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel recupero dei dati del ristorante:', error);
+                    showAlert(`Errore durante il caricamento delle informazioni del ristorante: ${error.message}.`, 'error');
+                });                
+
+            fetch(`http://localhost:3005/restaurateurs/${userData._id}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && data.restaurateur) {
+                        document.getElementById('restaurantEmail').textContent = data.restaurateur.email;
+                    } else if (data.error) {
+                        document.getElementById('restaurantEmail').textContent = 'Non disponibile';
+                        showAlert('Errore nel recupero dei dati del ristoratore: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('restaurantEmail').textContent = 'Non disponibile';
+                    showAlert('Errore nel recupero dei dati del ristoratore: ' + data.error, 'error');
+                });
+        }
+
+        // Function that loads restaurant statistics
+        // - This function sends a GET request, fetching the statistics for the restaurant associated with the logged-in user.
+        // - It updates the UI with the statistics data.
+        // - If no restaurant is associated, it logs an error message.
+        function loadRestaurantStats() {
+            if (!userData.restaurantId) {
+                console.error('Nessun ristorante associato, non posso caricare le statistiche.');
+                return;
+            }
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(`http://localhost:3005/restaurants/${userData.restaurantId}/stats`, options) 
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && data.stats) {
+                        document.getElementById('totalOrders').textContent = data.stats.totalOrders;
+                        document.getElementById('totalRevenue').textContent = `€${data.stats.totalRevenue.toFixed(2)}`;
+                        document.getElementById('pendingOrders').textContent = data.stats.pendingOrders;
+                        document.getElementById('estimatedTime').textContent = data.stats.waitingTime;
+                    } else if (data.error) {
+                        showAlert('Errore durante il caricamento delle statistiche: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel recupero delle statistiche del ristorante:', error);
+                    showAlert(`Errore durante il caricamento delle statistiche: ${error.message}`, 'error');
+                });
+        }
+
+        // Function that loads the restaurant menu
+        // - This function sends a GET request, fetching the menu items for the restaurant associated with the logged-in user.
+        // - It categorizes the menu items into different sections.
+        // - It updates the UI with the menu items and handles the case where no items are available in a category.
+        function loadMenu() {
+            if (!userData.restaurantId) {
+                console.error('Nessun ristorante associato, non posso caricare il menu.');
+                return;
+            }
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(`http://localhost:3005/restaurants/${userData.restaurantId}/menu`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && data.menu) {
+                        const firsts = document.getElementById('firsts');
+                        const seconds = document.getElementById('seconds');
+                        const desserts = document.getElementById('desserts');
+
+                        firsts.querySelector('.row').innerHTML = '';
+                        seconds.querySelector('.row').innerHTML = '';
+                        desserts.querySelector('.row').innerHTML = '';
+
+                        data.menu.forEach(menuItem => {
+                            const clone = createMealCard(menuItem);
+
+                            if (menuItem.mealDetails.category === 'first') {
+                                firsts.querySelector('.row').appendChild(clone);
+                            } else if (menuItem.mealDetails.category === 'second') {
+                                seconds.querySelector('.row').appendChild(clone);
+                            } else if (menuItem.mealDetails.category === 'dessert') {
+                                desserts.querySelector('.row').appendChild(clone);
+                            }
+                        });
+
+                        const noMealsAlert = '<div class="col-12"><div class="alert alert-info"><div class="d-flex align-items-center"><i class="bi bi-info-circle-fill me-3 fs-4"></i><div><p class="mb-0">Nessun piatto in questa categoria del menu. Clicca "Aggiungi Piatto" per iniziare.</p></div></div></div></div>';
+
+                        if (firsts.querySelector('.row').children.length === 0) {
+                            firsts.querySelector('.row').innerHTML = noMealsAlert;
+                        }
+
+                        if (seconds.querySelector('.row').children.length === 0) {
+                            seconds.querySelector('.row').innerHTML = noMealsAlert;
+                        }
+                    
+                        if (desserts.querySelector('.row').children.length === 0) {
+                            desserts.querySelector('.row').innerHTML = noMealsAlert;
+                        }
+                    } else if (data.error) {
+                        showAlert('Errore durante il caricamento del menu: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel recupero dei piatti del menu:', error);
+                    showAlert(`Errore durante il caricamento del menu: ${error.message}`, 'error');
+                });             
+        }
+
+        // Function that creates a meal card clone for the dashboard
+        // - This function clones the meal card model and populates it with meal data
+        // - It handles both specialty and regular meals appropriately
+        // - Returns the populated card element ready to be appended
+        function createMealCard(menuItem) {
+            const model = document.getElementById('mealCardModel');
+            const clone = model.cloneNode(true);
+
+            clone.getElementsByTagName('img')[0].src = menuItem.mealDetails.imgUrl;
+            clone.getElementsByTagName('img')[0].alt = menuItem.mealDetails.name;
+            clone.getElementsByClassName('meal-name')[0].textContent = menuItem.mealDetails.name;
+            
+            const priceElement = clone.getElementsByClassName('meal-price')[0];
+            if (menuItem.discount && menuItem.discount > 0) {
+                const originalPrice = menuItem.price;
+                const discountedPrice = originalPrice * (1 - menuItem.discount / 100);
+                priceElement.innerHTML = `<span class="text-decoration-line-through text-muted me-2">€${originalPrice.toFixed(2)}</span><span class="text-danger fw-bold">€${discountedPrice.toFixed(2)}</span>`;
+            } else {
+                priceElement.textContent = `€${menuItem.price.toFixed(2)}`;
+            }
+            
+            clone.getElementsByClassName('meal-ingredients')[0].textContent = menuItem.mealDetails.ingredients.join(', ') || 'Nessun ingrediente specificato';
+
+            clone.querySelector('#mealCardModel .meal-update-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openEditMealModal(menuItem);
+            });
+
+            clone.querySelector('#mealCardModel .meal-delete-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openDeleteModal('meal', menuItem);
+            });
+
+            if (menuItem.mealDetails.isSpecialty) {
+                clone.classList.add('border-warning');
+                clone.classList.add('bg-warning-subtle');
+                clone.querySelector('.specialty-badge').classList.remove('d-none');
+            }
+
+            clone.classList.remove('d-none');
+            clone.classList.add('meal-card');
+            clone.id = menuItem.mealId;
+
+            return clone;
+        }
+
+        // Function that handles the creation and editing of a restaurant
+        // - This function saves the restaurant data entered in the modal form.
+        // - It determines whether to create a new restaurant or update an existing one based on the presence of a restaurant ID.
+        // - Based on the operation, it sends a POST or PUT request to the server.
+        // - It sends the data to the server and updates the UI accordingly.
+        function saveRestaurant() {
+            const isEdit = !userData.restaurantId ? false : true;
+            const method = isEdit ? 'PUT' : 'POST';
+            const url = isEdit ? 
+                `http://localhost:3005/restaurants/${userData.restaurantId}` : 
+                `http://localhost:3005/restaurants`;
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const street = document.getElementById('street').value;
+            const streetNumber = document.getElementById('streetNumber').value;
+            const city = document.getElementById('city').value;
+            const cap = document.getElementById('cap').value;
+            const openingTime = document.getElementById('openingTime').value;
+            const closingTime = document.getElementById('closingTime').value;
+            const description = document.getElementById('description').value;
+
+            const restaurant = {
+                name,
+                phone,
+                street,
+                streetNumber,
+                city,
+                cap,
+                openingTime,
+                closingTime,
+                description,
+            };
+
+            if (!isEdit) {
+                restaurant.owner = userData._id;
+            }
+
+            const options = {
+                method: isEdit ? 'PUT' : 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(restaurant)
+            };
+
+            console.log(isEdit, url)
+            
+            fetch(url, options)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.message) {
+                    if (data.insertedId) {
+                        userData.restaurantId = data.insertedId;
+                        sessionStorage.setItem('userData', JSON.stringify(userData));
+                    }
+
+                    loadRestaurantDetails();
+                    showAlert(data.message, 'success');
+                } else if (data.error) {
+                    console.error('Errore durante il salvataggio del ristorante:', data);
+                    showAlert('Errore durante il salvataggio del ristorante: ' + data.error, 'error');
+                }
+            })
+            .catch(error => {    
+                console.error('Errore:', error);            
+                showAlert('Errore durante il salvataggio del ristorante: ' + error.message, 'error');
+            });
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('restaurantModal'));
+            modal.hide();
+        }
+
+        // Function that handles the deletion of a restaurant
+        // - This function sends a DELETE request to delete the restaurant associated with the logged-in user.
+        function closeActivity() {
+            if (!userData.restaurantId) {
+                console.error('Nessun ristorante associato, non é possibile chiudere l\'attività.');
+                showAlert('Nessun ristorante associato, non é possibile chiudere l\'attività.', 'error');
+                return;
+            }
+
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            fetch(`http://localhost:3005/restaurants/${userData.restaurantId}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        delete userData.restaurantId;
+                        sessionStorage.setItem('userData', JSON.stringify(userData));
+                        loadRestaurantDetails();
+                        showAlert('Ristorante chiuso con successo!', 'success');
+                    } else if (data.error) {
+                        showAlert('Errore durante la chiusura dell\'attività: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante la chiusura dell\'attività:', error);
+                    showAlert('Errore durante la chiusura dell\'attività: ' + error.message, 'error');
+                });
+                
+            const modal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+            modal.hide();
+        }
+
+        // Function that opens the delete modal and configures it for different deletion types
+        // - This function dynamically sets up the modal content based on the type of deletion.
+        function openDeleteModal(type, data = null) {
+            const modal = document.getElementById('deleteModal');
+            const modalTitle = modal.querySelector('.modal-title');
+            const modalBody = modal.querySelector('.modal-body');
+            const deleteButton = modal.querySelector('.btn-danger');
+            
+            if (type === 'restaurant') {
+                modalTitle.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i>Conferma Chiusura Ristorante';
+                modalBody.innerHTML = `
+                    <p>Sei sicuro di voler chiudere definitivamente il tuo ristorante?</p>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-1"></i>
+                        <span>Verranno eliminati tutti i dati del ristorante, compresi ordini, statistiche, menu e specialità.</span>
+                    </p>
+                `;
+                deleteButton.innerHTML = '<i class="bi bi-pause-circle me-1"></i>Chiudi Attività';
+                deleteButton.onclick = function() {
+                    closeActivity(data);
+                };
+            } else if (type === 'meal') {
+                modalTitle.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i>Conferma Eliminazione Piatto';
+                let infoMessage;
+                if (data.mealDetails.isSpecialty) {
+                    infoMessage = 'Essendo questo piatto una specialità del ristorante, verrà eliminato definitivamente dal database.';
+                } else {
+                    infoMessage = 'Questo piatto verrà rimosso dal menu del ristorante.';
+                }
+                modalBody.innerHTML = `
+                    <p>Sei sicuro di voler eliminare "<strong>${data.mealDetails.name}</strong>" dal menu?</p>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-1"></i>
+                        <span>Questa azione non può essere annullata. ${infoMessage}</span>
+                    </p>
+                `;
+                deleteButton.innerHTML = '<i class="bi bi-trash3 me-1"></i>Elimina Piatto';
+                deleteButton.onclick = function() {
+                    deleteMeal(data);
+                };
+            }
+            
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+        }
+
+        // Function that opens the edit meal modal
+        // - This function populates the modal with the meal details for editing.
+        // - It handles both specialty and non-specialty meals, showing or hiding additional fields as necessary.
+        function openEditMealModal(meal) {
+            document.getElementById('editMealId').value = meal.mealId;
+            document.getElementById('editIsSpecialty').value = meal.mealDetails.isSpecialty;
+            
+            document.getElementById('editMealName').value = meal.mealDetails.name;
+            document.getElementById('editMealPrice').value = meal.price;
+            document.getElementById('editMealDiscount').value = meal.discount || 0;
+            document.querySelector('.modal-title span').textContent = meal.mealDetails.name;
+            
+            const specialtyFields = document.getElementById('specialtyFields');
+            if (meal.mealDetails.isSpecialty) {
+                specialtyFields.classList.remove('d-none');
+                document.getElementById('editMealCategory').value = meal.mealDetails.category;
+                document.getElementById('editMealArea').value = meal.mealDetails.area || '';
+                document.getElementById('editMealInstructions').value = meal.mealDetails.instructions || '';
+                document.getElementById('editMealThumb').value = meal.mealDetails.imgUrl;
+                document.getElementById('editMealIngredients').value = meal.mealDetails.ingredients.join(', ') || '';
+            } else {
+                specialtyFields.classList.add('d-none');
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('editMealModal'));
+            modal.show();
+        }
+
+        // Function that saves changes made to a meal
+        // - This function sends a PUT request to update the meal details.
+        // - It retrieves the values from the modal form and constructs the request body accordingly.
+        // - It handles both specialty and non-specialty meals, updating the appropriate fields.
+        function saveMealChanges() {
+            const mealId = document.getElementById('editMealId').value;
+            const isSpecialty = document.getElementById('editIsSpecialty').value === 'true';
+            const price = parseFloat(document.getElementById('editMealPrice').value);
+            const discount = parseFloat(document.getElementById('editMealDiscount').value);
+            
+            let updateData = { price, discount };
+            let url;
+            
+            if (isSpecialty) {
+                const ingredients = document.getElementById('editMealIngredients').value
+                    .split(',')
+                    .map(ingredient => ingredient.trim())
+                    .filter(ingredient => ingredient.length > 0);
+                
+                updateData = {
+                    name: document.getElementById('editMealName').value,
+                    category: document.getElementById('editMealCategory').value,
+                    area: document.getElementById('editMealArea').value,
+                    instructions: document.getElementById('editMealInstructions').value,
+                    imgUrl: document.getElementById('editMealThumb').value,
+                    ingredients: ingredients,
+                    price: price,
+                    discount: discount,
+                    restaurantId: userData.restaurantId
+                };
+
+                url = `http://localhost:3005/meals/${mealId}`;
+            } else {
+                url = `http://localhost:3005/restaurants/${userData.restaurantId}/menu/${mealId}`;
+            }
+            
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updateData)
+            };
+            
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showAlert('Piatto aggiornato con successo!', 'success');
+                        loadMenu();
+                    } else if (data.error) {
+                        showAlert('Errore durante l\'aggiornamento del piatto: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante l\'aggiornamento del piatto:', error);
+                    showAlert('Errore durante l\'aggiornamento del piatto: ' + error.message, 'error');
+                });
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editMealModal'));
+            modal.hide();
+        }
+
+        // Function that deletes a meal from the menu
+        // - This function sends a DELETE request to delete the specified meal.
+        // - It handles both specialty and non-specialty meals, determining the correct URL based on the meal type.
+        function deleteMeal(meal) {
+            let url;
+            if (meal.mealDetails.isSpecialty) {
+                url = `http://localhost:3005/meals/${meal.mealId}?restaurantId=${userData.restaurantId}`;
+
+            } else {
+                url = `http://localhost:3005/restaurants/${userData.restaurantId}/menu/${meal.mealId}`;
+
+            }
+            
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showAlert('Piatto eliminato con successo!', 'success');
+                        loadMenu();
+                    } else if (data.error) {
+                        showAlert('Errore durante l\'eliminazione del piatto: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante l\'eliminazione del piatto:', error);
+                    showAlert('Errore durante l\'eliminazione del piatto: ' + error.message, 'error');
+                });
+                
+            const modal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+            modal.hide();
+        }
+    
+        // Function to show alert messages
+        // - It displays a success or error message based on the type of alert.
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

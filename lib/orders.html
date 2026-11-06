@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="#" id="homeLink"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3" id="navbarItems">
+                    <li class="nav-item cust-nav-item d-none">
+                        <a class="nav-link active" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                    <li class="nav-item rest-nav-item d-none">
+                        <a class="nav-link" href="addMeals.html"><i class="bi bi-plus-circle me-2"></i>Aggiungi Piatti</a>
+                    </li>
+                    <li class="nav-item rest-nav-item d-none">
+                        <a class="nav-link active" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 gap-lg-4 ms-3 ms-lg-0">
+                    <h5 class="mt-2" id="username"></h5>
+                    <a href="manageProfile.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-gear"></i> Profilo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4 p-2 p-lg-0">
+        <!-- Header -->
+        <section class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <h1 class="fw-bold text-dark mb-2 mb-md-0">
+                        <i class="bi bi-receipt me-2 text-warning"></i>
+                        <span id="pageTitle"></span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Spinner -->
+        <div class="d-flex justify-content-center my-5" id="loadingSpinner">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Caricamento...</span>
+            </div>
+        </div>
+
+        <!-- No Orders Message -->
+        <div class="text-center my-5 d-none" id="noOrdersMessage">
+            <i class="bi bi-receipt text-muted" style="font-size: 4rem;"></i>
+            <h3 class="text-muted mt-3">Nessun ordine trovato</h3>
+            <p class="text-muted"></p>
+        </div>
+
+        <!-- Orders Container -->
+        <section class="row" id="ordersContainer">
+            <!-- Orders will be dynamically populated here -->
+        </section>
+
+        <!-- Order Card Model -->
+        <div id="orderCardModel" class="col-12 mb-3 d-none">
+            <div class="card order-card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row align-items-start">
+                        <!-- Order Info -->
+                        <div class="col-md-12 col-lg-7 col-xl-8">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <span class="badge status-badge order-status"></span>
+                                    </div>
+                                    <small class="text-muted order-date"></small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="order-info">
+                                        <h6 class="fw-semibold text-secondary mb-1">
+                                            <div class="d-flex">
+                                                <i></i>
+                                                <span></span>
+                                            </div>
+                                            <small></small>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Meals Summary -->
+                            <div class="mb-3">
+                                <div class="d-flex gap-5">
+                                    <h6 class="fw-semibold text-secondary mb-3">
+                                        <i class="bi bi-list-ul me-2"></i>Piatti (<span class="meals-count">0</span>)
+                                    </h6>
+                                    <small class="estimatedTime text-secondary"></small>
+                                </div>
+                                <div class="meals-summary">
+                                    <!-- Meals will be inserted here -->
+                                </div>
+                            </div>
+
+                            <!-- Meal Item Model -->
+                            <div id="mealItemModel" class="d-none">
+                                <span class="meal-item-summary d-inline-block py-1 px-3 m-1 bg-light border-2 border-secondary rounded-pill">
+                                    <small class="meal-name fw-semibold"></small>
+                                    <small class="meal-quantity text-muted mx-1"></small>
+                                    <small class="meal-price text-warning fw-semibold"></small>
+                                </span>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between justify-content-md-start align-items-center gap-md-5">
+                                <h5 class="fw-bold mb-0 text-warning order-total"></h5>
+                                <small class="text-muted order-delivery-date"></small>
+                            </div>
+                        </div>
+                        
+                        <!-- Status Control -->
+                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-4 mt-3 mt-lg-0 mx-auto mx-lg-0">
+                            <div class="status-roadmap d-none bg-light border rounded-3 p-3">
+                                <h6 class="fw-semibold text-secondary mb-3 text-center">Stato Ordine</h6>
+                                <div class="status-steps d-flex flex-row align-items-center justify-content-between gap-1">
+                                    <div class="status-step d-flex flex-column align-items-center p-1 rounded flex-shrink-0" data-status="ordered">
+                                        <div class="status-circle rounded-circle d-flex align-items-center justify-content-center mb-1 border-2">
+                                            <i class="bi bi-cart-check"></i>
+                                        </div>
+                                        <small class="status-label fw-semibold text-center text-muted">
+                                            <span class="d-inline-block d-md-none">Ord.</span><span class="d-none d-md-inline-block">Ordinato</span>
+                                        </small>
+                                    </div>
+                                    <div class="status-connector bg-secondary flex-grow-1 mb-4"></div>
+                                    <div class="status-step d-flex flex-column align-items-center p-1 rounded flex-grow-0" data-status="in_progress">
+                                        <div class="status-circle rounded-circle d-flex align-items-center justify-content-center mb-1 border-2">
+                                            <i class="bi bi-clock"></i>
+                                        </div>
+                                        <small class="status-label fw-semibold text-center text-muted">
+                                            <span class="d-inline-block d-md-none">Prep.</span><span class="d-none d-md-inline-block">Preparazione</span>
+                                        </small>
+                                    </div>
+                                    <div class="status-connector bg-secondary flex-grow-1 mb-4"></div>
+                                    <div class="status-step d-flex flex-column align-items-center p-1 rounded flex-shrink-0" data-status="delivered">
+                                        <div class="status-circle rounded-circle d-flex align-items-center justify-content-center mb-1 border-2">
+                                            <i class="bi bi-check-circle"></i>
+                                        </div>
+                                        <small class="status-label fw-semibold text-center text-muted">
+                                            <span class="d-inline-block d-md-none">Cons.</span><span class="d-none d-md-inline-block">Consegnato</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-1 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-1 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .alert-danger, .alert-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: 350px;
+        }
+
+        .order-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
+
+        .status-badge {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .status-circle {
+            width: 3rem;
+            height: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .status-step:hover:not(.disabled) {
+            transform: scale(1.05);
+        }
+
+        .status-step.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .status-connector {
+            height: 2px;
+            min-width: 0.5rem;
+            max-width: 4rem;
+        }
+
+        @media (max-width: 576px) {
+            .status-circle {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+            }
+            
+            .status-label {
+                font-size: 0.75rem;
+                max-width: 60px;
+            }
+            
+            .status-connector {
+                min-width: 0.3rem;
+                max-width: 4rem;
+                flex-grow: 0.5 !important;
+            }
+        }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id) {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            setupNavbar();
+            loadOrders();
+        });
+
+        // Function that sets up navbar based on user role
+        // - It sets the home link and additional navbar items based on the user's role
+        function setupNavbar() {
+            const navbarItems = document.getElementById('navbarItems');
+            const homeLink = document.getElementById('homeLink');
+            const username = document.getElementById('username');
+            const pageTitle = document.getElementById('pageTitle');
+
+            username.textContent = userData.username;
+
+            if (userData.role === 'restaurateur') {
+                homeLink.href = 'dashboardRest.html';
+                pageTitle.textContent = 'Ordini Ricevuti';
+                document.querySelector('#noOrdersMessage p').textContent = 'Non hai ancora ricevuto ordini.';
+                document.querySelectorAll('.rest-nav-item').forEach(item => item.classList.remove('d-none'));
+                document.querySelectorAll('.cust-nav-item').forEach(item => item.classList.add('d-none'));
+            } else {
+                homeLink.href = 'restaurants.html';
+                pageTitle.textContent = 'I Tuoi Ordini';
+                document.querySelector('#noOrdersMessage p').textContent = 'Non hai ancora effettuato nessun ordine.';
+                document.querySelectorAll('.cust-nav-item').forEach(item => item.classList.remove('d-none'));
+                document.querySelectorAll('.rest-nav-item').forEach(item => item.classList.add('d-none'));
+            }
+        }
+
+        // Function that loads orders based on user role
+        // - It sends a GET request to the server to fetch orders based on the user's role and ID
+        function loadOrders() {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const ordersContainer = document.getElementById('ordersContainer');
+            const noOrdersMessage = document.getElementById('noOrdersMessage');
+
+            loadingSpinner.classList.remove('d-none');
+            ordersContainer.innerHTML = '';
+            noOrdersMessage.classList.add('d-none');
+
+            const role = userData.role;
+            const id = userData.role === 'restaurateur' ? userData.restaurantId : userData._id;
+
+            if (!id) {
+                if (userData.role === 'restaurateur') {
+                    showAlert('Errore: ID ristorante non trovato. Assicurati di aver creato un ristorante.', 'error');
+                    loadingSpinner.classList.add('d-none');
+                    return;
+                }
+            }
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(`http://localhost:3005/orders?role=${role}&id=${id}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    loadingSpinner.classList.add('d-none');
+                    if (data.message && data.orders) {
+                        if (data.orders.length === 0) {
+                            noOrdersMessage.classList.remove('d-none');
+                        } else {
+                            data.orders.forEach(order => {
+                                const orderCard = createOrderCard(order);
+                                ordersContainer.appendChild(orderCard);
+                            });
+                            noOrdersMessage.classList.add('d-none');
+                        }
+                    } else if (data.error) {
+                        showAlert('Errore nel caricamento degli ordini: ' + data.error, 'error');
+                        noOrdersMessage.classList.remove('d-none');
+                    }
+                })
+                .catch(error => {
+                    loadingSpinner.classList.add('d-none');
+                    console.error('Errore nel caricamento degli ordini:', error);
+                    showAlert('Errore nel caricamento degli ordini: ' + error.message, 'error');
+                    noOrdersMessage.classList.remove('d-none');
+                });
+        }
+
+        // Function that creates an order card using the provided order data
+        // - It clones the order card model, populates it with order data, and returns the populated card
+        function createOrderCard(order) {
+            const model = document.getElementById('orderCardModel');
+            const clone = model.cloneNode(true);
+            
+            clone.classList.remove('d-none');
+            clone.id = `order-${order._id}`;
+            
+            const orderDate = new Date(order.orderTime).toLocaleDateString('it-IT', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            clone.querySelector('.order-date').textContent = orderDate;
+            
+            const statusInfo = getStatusInfo(order.status);
+            const statusBadge = clone.querySelector('.order-status');
+            statusBadge.textContent = statusInfo.text;
+            statusBadge.className = `badge status-badge ${statusInfo.class}`;
+            
+            if (userData.role === 'customer') {
+                clone.querySelector('.order-info div span').textContent = order.restaurant[0].name || 'Ristorante sconosciuto';
+                clone.querySelector('.order-info small').textContent = order.restaurant[0].address || 'N / A';
+                clone.querySelector('.order-info div i').classList.add('bi', 'bi-shop', 'me-2');
+                clone.querySelector('.estimatedTime').textContent = `Tempo stimato: ${order.estimatedTime} min`;
+            } else {
+                clone.querySelector('.order-info div span').textContent = `${order.customer[0].name} ${order.customer[0].lastName}` || 'Cliente sconosciuto';
+                clone.querySelector('.order-info small').textContent = order.customer[0].email || 'N / A';
+                clone.querySelector('.order-info div i').classList.add('bi', 'bi-person', 'me-2');
+                clone.querySelector('.estimatedTime').textContent = `Tempo di Preparazione: ${order.prepTime} min`;
+            }
+            
+            clone.querySelector('.meals-count').textContent = order.meals.length || 0;
+            const mealsSummary = clone.querySelector('.meals-summary');
+            mealsSummary.innerHTML = '';
+            
+            order.meals.forEach(meal => {
+                const mealElement = createMealSummary(meal, order.mealsDetails.find(m => m._id === meal.mealId).name);
+                mealsSummary.appendChild(mealElement);
+            });
+            
+            clone.querySelector('.order-total').textContent = `€${order.totalPrice.toFixed(2)}`;
+            
+            const deliveryDate = order.deliveryTime ? 
+                new Date(order.deliveryTime).toLocaleDateString('it-IT', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }) : null;
+            
+            if (deliveryDate) {
+                clone.querySelector('.order-delivery-date').textContent = `Consegnato: ${deliveryDate}`;
+            }
+            
+            const statusRoadmap = clone.querySelector('.status-roadmap');
+            statusRoadmap.classList.remove('d-none');
+            setupStatusRoadmap(statusRoadmap, order);
+            
+            return clone;
+        }
+
+        // Function that creates a meal summary element
+        // - It clones the meal item model, populates it with meal data, and returns the populated element
+        function createMealSummary(meal, mealName) {
+            const model = document.getElementById('mealItemModel');
+            const clone = model.cloneNode(true);
+            
+            clone.classList.remove('d-none');
+            
+            const summaryElement = clone.querySelector('.meal-item-summary');
+            summaryElement.querySelector('.meal-name').textContent = mealName || 'Piatto sconosciuto';
+            summaryElement.querySelector('.meal-quantity').textContent = `x${meal.quantity}`;
+            summaryElement.querySelector('.meal-price').textContent = `€${meal.price.toFixed(2)}`;
+            
+            return summaryElement;
+        }
+
+        // Function that sets up the status roadmap for an order
+        // - It updates the status steps and connectors based on the order status
+        function setupStatusRoadmap(roadmapElement, order) {
+            const steps = roadmapElement.querySelectorAll('.status-step');
+            const connectors = roadmapElement.querySelectorAll('.status-connector');
+            
+            steps.forEach((step, index) => {
+                const stepStatus = step.dataset.status;
+                const statusIndex = ['ordered', 'in_progress', 'delivered'].indexOf(stepStatus);
+                const currentStatusIndex = ['ordered', 'in_progress', 'delivered'].indexOf(order.status);
+                
+                step.classList.remove('disabled');
+                const circle = step.querySelector('.status-circle');
+                const label = step.querySelector('.status-label');
+                
+                circle.classList.remove('bg-warning', 'bg-success', 'text-dark', 'text-white', 'border-warning', 'border-success');
+                label.classList.remove('text-dark');
+
+                if (statusIndex < currentStatusIndex || currentStatusIndex === 2) { // Completed steps
+                    circle.classList.add('bg-success', 'text-white', 'border-success');
+                } else if (statusIndex === currentStatusIndex) { // Current step
+                    circle.classList.add('bg-warning', 'text-dark', 'border-warning');
+                    label.classList.add('text-dark');
+                } else if (statusIndex === currentStatusIndex + 1 && currentStatusIndex !== 2) { // Next step
+                    circle.classList.add('bg-white', 'text-muted', 'border-secondary');
+                    if (userData.role === 'restaurateur') {
+                        step.style.cursor = 'pointer';
+                        step.addEventListener('click', () => updateOrderStatus(order._id, stepStatus));
+                    } 
+                } else { // Future steps
+                    step.classList.add('disabled', 'cursor-not-allowed');
+                }
+            });
+            
+            connectors.forEach((connector, index) => {
+                const nextStatusIndex = index + 1;  // Index of the step after the connector
+                const currentStatusIndex = ['ordered', 'in_progress', 'delivered'].indexOf(order.status);
+                
+                connector.classList.remove('bg-success');
+                if (nextStatusIndex <= currentStatusIndex) {
+                    connector.classList.add('bg-success');
+                }
+            });
+        }
+
+        // Function to get status information
+        // - Returns an object with text and class based on the status
+        function getStatusInfo(status) {
+            switch (status) {
+                case 'ordered':
+                    return { text: 'Ordinato', class: 'bg-info' };
+                case 'in_progress':
+                    return { text: 'In Preparazione', class: 'bg-warning' };
+                case 'delivered':
+                    return { text: 'Consegnato', class: 'bg-success' };
+            }
+        }
+
+        // Function that updates the order status
+        // - Sends a PUT request to the server to update the order status
+        function updateOrderStatus(orderId, newStatus) {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: newStatus })
+            };
+
+            fetch(`http://localhost:3005/orders/${orderId}`, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message) {
+                        showAlert(`Lo stato dell'ordine é stato aggiornato con successo`, 'success');
+                        loadOrders();
+                    } else if (data.error) {
+                        showAlert('Errore nell\'aggiornamento dello stato: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nell\'aggiornamento dello stato:', error);
+                    showAlert('Errore di connessione al server: ' + error.message, 'error');
+                });
+        }
+
+        // Function to show alert messages
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

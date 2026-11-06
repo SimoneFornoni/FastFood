@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food - Ristoranti</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="restaurants.html"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-5 ms-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">
+                            <i class="bi bi-receipt me-2"></i>Ordini
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <h5 class="mb-0 me-2 text-nowrap ms-5 ms-lg-0" id="username"></h5>
+                    <a href="manageProfile.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-gear me-1"></i>Profilo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+
+        <!-- Header -->
+        <section class="mb-4">
+            <div class="row g-3">
+                <div class="col-lg-8 col-md-12">
+                <div class="d-flex">
+                    <input type="text" class="form-control me-2" id="searchInput" placeholder="Cerca ristoranti...">
+                    <button class="btn btn-warning flex-shrink-0" onclick="loadRestaurants()">
+                        <i class="bi bi-search"></i> Cerca
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 d-flex justify-content-lg-end justify-content-center">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-shop me-2 text-warning"></i>
+                    <span class="fw-bold">Ristoranti Disponibili: <span id="restaurantCount">0</span></span>
+                </div>
+            </div>
+            </div>
+            
+        </section>
+
+        <!-- Restaurants Container -->
+        <div class="row" id="restaurantsContainer">
+            <!-- Restaurants will be loaded here -->
+        </div>
+
+        <!-- Restaurant Card Model -->
+        <div id="restaurantCardModel" class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4 d-none">
+            <div class="card restaurant-card h-100 position-relative">
+                <!-- Discount Badge -->
+                <span class="badge position-absolute top-0 end-0 m-2 d-none discount-badge">
+                    <i class="bi bi-percent"></i> Sconti
+                </span>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h5 class="card-title mb-0 restaurant-name"></h5>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-geo-alt-fill text-warning me-2"></i>
+                            <small class="text-muted restaurant-address"></small>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-fill text-warning me-2"></i>
+                            <small class="text-muted restaurant-phone"></small>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-fill text-warning me-2"></i>
+                            <small class="text-muted restaurant-hours"></small>
+                        </div>
+                    </div>
+                    
+                    <p class="card-text restaurant-description text-muted mb-3"></p>
+                    
+                    <div class="d-grid">
+                        <a class="btn btn-outline-warning view-restaurant-btn" href="restaurant.html?id=">
+                            <i class="bi bi-eye me-1"></i>Visualizza Menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="text-center d-none" id="loadingIndicator">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Caricamento...</span>
+            </div>
+            <p class="mt-2 text-muted">Caricamento ristoranti...</p>
+        </div>
+    </main>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-3 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-3 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .restaurant-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid #e9ecef;
+            height: 100%;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .restaurant-name {
+            color: #495057;
+            font-weight: 600;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .restaurant-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .discount-badge {
+            background-color: #fc5667;
+            color: white;
+        }
+
+        .alert-danger, .alert-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: 350px;
+        }
+
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .restaurant-card .card-body {
+                padding: 1rem 0.75rem;
+            }
+        }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id) {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            if (userData.role !== 'customer') {
+                console.error('Accesso non autorizzato.');
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            document.getElementById('username').textContent = userData.username;
+            
+            document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    loadRestaurants();
+                }
+            });
+            
+            loadRestaurants();
+        });
+
+        // Function that loads all restaurants
+        // - It sends a GET request to the server to fetch all restaurants, displaying them in cards.
+        // - It handles search functionality by filtering restaurants based on the search term.
+        function loadRestaurants() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const userPreference = userData.preference;
+            
+            let url = 'http://localhost:3005/restaurants';
+            const params = new URLSearchParams();
+            
+            if (searchTerm !== '') {
+                params.append('search', searchTerm);
+            }
+            
+            if (userPreference) {
+                params.append('preference', userPreference);
+            }
+            
+            if (params.toString()) {
+                url += '?' + params.toString();
+            }
+
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const restaurantsContainer = document.getElementById('restaurantsContainer');
+            
+            loadingIndicator.classList.remove('d-none');
+            restaurantsContainer.innerHTML = '';
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && Array.isArray(data.restaurants)) {
+                        data.restaurants.forEach(restaurant => {
+                            const clone = createRestaurantCard(restaurant);
+                            restaurantsContainer.appendChild(clone);
+                        });
+                    } else {
+                        showAlert('Errore nel caricamento dei ristoranti', 'error');
+                    }
+                    document.getElementById('restaurantCount').textContent = data.restaurants.length;
+                    loadingIndicator.classList.add('d-none');
+                })
+                .catch(err => {
+                    console.error('Errore durante il caricamento dei ristoranti:', err);
+                    showAlert('Errore durante il caricamento dei ristoranti', 'error');
+                    loadingIndicator.classList.add('d-none');
+                });
+        }
+
+        // Function that creates a restaurant card
+        // - It takes a restaurant object and creates a card element with its details.
+        function createRestaurantCard(restaurant) {
+            const model = document.getElementById('restaurantCardModel');
+            const clone = model.cloneNode(true);
+
+            clone.querySelector('.restaurant-name').textContent = restaurant.name;
+            clone.querySelector('.restaurant-address').textContent = restaurant.address;
+            clone.querySelector('.restaurant-phone').textContent = restaurant.phone;
+            clone.querySelector('.restaurant-hours').textContent = `${restaurant.openingTime} - ${restaurant.closingTime}`;
+            clone.querySelector('.restaurant-description').textContent = restaurant.description || 'Nessuna descrizione disponibile';
+            clone.querySelector('.view-restaurant-btn').href += restaurant._id;
+
+            if (restaurant.hasPreferredDiscount) {
+                clone.querySelector('.discount-badge').classList.remove('d-none');
+                clone.querySelector('.discount-badge').textContent = `Sconto %`;
+            } else {
+                clone.querySelector('.discount-badge').classList.add('d-none');
+            }
+            
+
+            clone.classList.remove('d-none');
+            clone.id = `restaurant-${restaurant._id}`;
+            return clone;
+        }
+
+        // Function to show alert messages
+        // - It displays a success or error message based on the type of alert.
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

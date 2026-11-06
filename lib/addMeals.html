@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3" href="dashboardRest.html"><i class="bi bi-cup-hot-fill me-2 text-warning"></i>Fast Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between me-4" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-5 ms-lg-0 gap-3">
+                   <li class="nav-item">
+                        <a class="nav-link active" href="addMeals.html"><i class="bi bi-plus-circle me-2"></i>Aggiungi Piatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html"><i class="bi bi-receipt me-2"></i>Ordini</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 gap-lg-4 ms-3 ms-lg-0">
+                    <h5 class="mt-2" id="username"></h5>
+                    <a href="manageProfile.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-gear"></i> Profilo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+
+        <!-- Header -->
+        <section class="row mb-4 g-3">
+            <div class="col-lg-8 col-md-12">
+                <div class="d-flex">
+                    <input type="text" class="form-control me-2" id="searchInput" placeholder="Cerca piatti...">
+                    <button class="btn btn-warning flex-shrink-0" onclick="loadMeals()">
+                        <i class="bi bi-search"></i> <span class="d-none d-sm-inline">Cerca</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 d-flex justify-content-lg-end justify-content-center">
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addSpecialtyModal">
+                    <i class="bi bi-plus-circle"></i> Aggiungi Specialità
+                </button>
+            </div>
+        </section>
+
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-shop me-2 text-warning"></i>
+                <span class="fw-bold">Piatti Disponibili: <span id="mealsCount"></span></span>
+            </div>
+        </div>
+
+        <div class="row" id="mealsContainer">
+            <!-- Meals will be loaded here -->
+        </div>
+
+        <!-- Meal Card Model -->
+        <div id="mealCardModel" class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mb-4 d-none">
+            <div class="card meal-card h-100">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-lg-4 col-md-12 col-sm-4">
+                            <img class="meal-image w-100" alt="">
+                        </div>
+                        <div class="col-lg-8 col-md-12 col-sm-8">
+                            <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+                                <h5 class="card-title mb-1 flex-grow-1 meal-name"></h5>
+                                <span class="badge bg-warning category-badge flex-shrink-0"></span>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted"><strong>Ingredienti:</strong></small>
+                                <div class="meal-ingredients text-muted"></div>
+                            </div>
+                            <div class=" mb-3">
+                                <span class="text-muted">Tempo di preparazione: <strong><span class="meal-prep-time"></span> min</strong></span>
+                            </div>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <a class="btn btn-outline-warning btn-sm flex-fill flex-sm-grow-0 meal-details-btn" href="meal.html?id=">
+                                    <i class="bi bi-eye"></i> Dettagli
+                                </a>
+                                <button class="btn btn-danger btn-sm flex-fill flex-sm-grow-0 meal-add-btn">
+                                    <i class="bi bi-plus-circle"></i> Aggiungi al Menu
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="text-center d-none" id="loadingIndicator">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Caricamento...</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Meal Modal -->
+    <div class="modal fade" id="addMealModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5>Vuoi aggiungere <span id="modalMealName"></span> al tuo menu?</h5>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="modalMealId"/>
+                        <label for="mealPrice" class="form-label">Prezzo di vendita (€) *</label>
+                        <div class="input-group w-50">
+                            <span class="input-group-text"><i class="bi bi-currency-euro"></i></span>
+                            <input type="number" class="form-control" id="mealPrice" step="0.01" min="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-warning" onclick="addMealToMenu()">Aggiungi al Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Specialty Modal -->
+    <div class="modal fade" id="addSpecialtyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crea Nuova Specialità</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="specialtyForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="specialtyName" class="form-label">Nome Specialità *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-egg-fried"></i></span>
+                                    <input type="text" class="form-control" id="specialtyName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="specialtyCategory" class="form-label">Categoria *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-tags"></i></span>
+                                    <select class="form-select" id="specialtyCategory" required>
+                                        <option disabled selected>Seleziona categoria</option>
+                                        <option value="first">Primo</option>
+                                        <option value="second">Secondo</option>
+                                        <option value="dessert">Dolce</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-12">
+                                <label for="specialtyInstructions" class="form-label">Istruzioni</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-list-columns"></i></span>
+                                    <textarea class="form-control" id="specialtyInstructions" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-12">
+                                <label for="specialtyIngredients" class="form-label">Ingredienti (separati da virgola) *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-list-stars"></i></span>
+                                    <input type="text" class="form-control" id="specialtyIngredients" placeholder="pomodoro, mozzarella, basilico">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-12">
+                                <label for="specialtyImage" class="form-label">URL Immagine *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-card-image"></i></span>
+                                    <input type="url" class="form-control" id="specialtyImage">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label for="specialtyArea" class="form-label">Area del piatto</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-globe-europe-africa"></i></span>
+                                    <input type="text" class="form-control" id="specialtyArea">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="specialtyPrice" class="form-label">Prezzo (€) *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-currency-euro"></i></span>
+                                    <input type="number" class="form-control" id="specialtyPrice" step="0.01" min="0.01">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="specialtyPrepTime" class="form-label">Tempo (min) *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-hourglass-split"></i></span>
+                                    <input type="number" class="form-control" id="specialtyPrepTime" step="1" min="1">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-warning" onclick="createSpecialty()">Crea Specialità</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-danger d-none mt-2 mt-md-3 mb-3 shadow-sm" id="errorAlert" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span id="errorMessage"></span>
+    </div>
+    <div class="alert alert-success d-none mt-2 mt-md-3 mb-3 shadow-sm" id="successAlert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span id="successMessage"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .meal-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid #e9ecef;
+            height: 100%;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .meal-image {
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .category-badge {
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .meal-ingredients {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .alert-danger , .alert-success{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: 350px;
+        }
+
+        .card-title {
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        @media (max-width: 575.98px) {
+            .meal-image {
+                height: 180px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .meal-image {
+                height: 140px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .meal-image {
+                height: 160px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .meal-image {
+                height: 120px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .meal-image {
+                height: 140px;
+            }
+        }
+    </style>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!userData._id) {
+                console.error('Nessun utente loggato.');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            if (userData.role !== 'restaurateur') {
+                console.error('Accesso non autorizzato.');
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            document.getElementById('username').textContent = userData.username;
+
+            document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    loadRestaurants();
+                }
+            });
+            
+            loadMeals();
+        });
+
+        // Function that loads all the meals
+        // - It sends a GET request to the server to fetch all meals, displaying them in cards.
+        // - It handles search functionality by appending a query parameter if a search term is provided.
+        function loadMeals() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            let url = 'http://localhost:3005/meals';
+            
+            if (searchTerm !== '') {
+                url += '?search=' + encodeURIComponent(searchTerm);
+            }
+
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const mealsContainer = document.getElementById('mealsContainer');
+            
+            loadingIndicator.classList.remove('d-none');
+            mealsContainer.innerHTML = '';
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message && Array.isArray(data.meals)) {
+                        loadingIndicator.classList.add('d-none');
+                        document.getElementById('searchInput').value = '';
+                        document.getElementById('mealsCount').textContent = data.meals.length;
+
+                        data.meals.forEach(meal => {
+                            const clone = createMealCard(meal);
+                            mealsContainer.appendChild(clone);
+                        });
+                    } else if (data.error) {
+                        console.error('Errore nel caricamento dei piatti:', data.error);
+                        loadingIndicator.classList.add('d-none');
+                        showAlert('Errore nel caricamento dei piatti: ' + data.error, 'error');
+                    } 
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento dei piatti:', error);
+                    loadingIndicator.classList.add('d-none');
+                    showAlert('Errore nel caricamento dei piatti: ' + error.message, 'error');
+                });
+        }
+
+        // Function that creates a meal card element
+        // - It clones the meal card model and populates it with meal data.
+        function createMealCard(meal) {
+            const model = document.getElementById('mealCardModel');
+            const clone = model.cloneNode(true);
+
+            clone.getElementsByTagName('img')[0].src = meal.imgUrl;
+            clone.getElementsByTagName('img')[0].alt = meal.name;
+            clone.getElementsByClassName('meal-name')[0].textContent = meal.name;
+            clone.getElementsByClassName('category-badge')[0].textContent = meal.category;
+            clone.getElementsByClassName('meal-prep-time')[0].textContent = meal.prepTime || 'N/A';
+            clone.getElementsByClassName('meal-ingredients')[0].textContent = Array.isArray(meal.ingredients) ? meal.ingredients.join(', ') : meal.ingredients || 'Non specificati';
+            
+            clone.getElementsByClassName('meal-details-btn')[0].href = `meal.html?id=${meal._id}`;
+            clone.getElementsByClassName('meal-add-btn')[0].onclick = function() {
+                openAddMealModal(this.closest('.meal-card').parentElement.id);
+            };
+            
+            clone.id = meal._id;
+            clone.classList.remove('d-none');
+            return clone;
+        }
+
+        // Function that opens the modal to add a meal to the menu
+        // - It sets the meal ID and name in the modal.
+        function openAddMealModal(mealId) {
+            if (!mealId) return;
+
+            const mealElement = document.getElementById(mealId);
+            if (!mealElement) return;
+
+            document.getElementById('modalMealId').value = mealId;
+            document.getElementById('modalMealName').textContent = mealElement.getElementsByClassName('card-title')[0].textContent;
+
+            const addMealModal = new bootstrap.Modal(document.getElementById('addMealModal'));
+            addMealModal.show();
+        }
+
+        // Function that adds a meal to the restaurant's menu
+        // - It retrieves the meal ID and price from the modal inputs.
+        // - It checks if the user has a restaurant ID.
+        // - It sends a POST request to add the meal to the menu.
+        function addMealToMenu() {
+            const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+            const mealId = document.getElementById('modalMealId').value;
+            const price = parseFloat(document.getElementById('mealPrice').value);
+
+            if (!userData.restaurantId) {
+                showAlert('Devi avere un ristorante per aggiungere piatti al menu.', 'error');
+                return;
+            }
+
+            const menuItem = {
+                meal: mealId,
+                price: price,
+            };
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(menuItem)
+            };
+
+            fetch(`http://localhost:3005/restaurants/${userData.restaurantId}/menu`,  options)
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    const mealName = document.getElementById('modalMealName').textContent;
+                    showAlert(`${mealName} è stato aggiunto al menu con successo!`, 'success');
+                    
+                    document.getElementById('mealPrice').value = '';
+                    document.getElementById('modalMealId').value = '';
+                } else if (data.error) {
+                    showAlert(`Errore nell'aggiunta del piatto al menu: ${data.error}`, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Errore nell\'aggiunta del piatto al menu:', error);
+                showAlert(`Errore nell'aggiunta del piatto al menu: ${error.message}`, 'error');
+            });
+
+            const addMealModal = bootstrap.Modal.getInstance(document.getElementById('addMealModal'));
+            addMealModal.hide();
+        }
+
+        // Function that creates a new specialty meal
+        // - It retrieves the form data and sends a POST request to create the specialty.
+        // - It checks if the user has a restaurant ID before proceeding.
+        function createSpecialty() {
+            const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+            
+            if (!userData.restaurantId) {
+                showAlert('Devi avere un ristorante per creare specialità.', 'error');
+                return;
+            }
+
+            const name = document.getElementById('specialtyName').value;
+            const category = document.getElementById('specialtyCategory').value;
+            const area = document.getElementById('specialtyArea').value;
+            const instructions = document.getElementById('specialtyInstructions').value;
+            const prepTime = parseInt(document.getElementById('specialtyPrepTime').value, 10);
+            const ingredientsString = document.getElementById('specialtyIngredients').value;
+            const imgUrl = document.getElementById('specialtyImage').value;
+            
+            const price = parseFloat(document.getElementById('specialtyPrice').value);
+
+            const ingredients = ingredientsString.split(',').map(ingredient => ingredient.trim()).filter(ingredient => ingredient.length > 0);
+
+            const specialtyData = {
+                name: name,
+                category: category,
+                area: area,
+                instructions: instructions,
+                prepTime: prepTime,
+                imgUrl: imgUrl,
+                ingredients: ingredients,
+                restaurantId: userData.restaurantId,
+                price: price
+            };
+
+            fetch('http://localhost:3005/meals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(specialtyData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.message) {
+                    showAlert(data.message, 'success');
+                    document.getElementById('specialtyForm').reset();
+                } else if (data.error) {
+                    showAlert(`Errore nella creazione della specialità: ${data.error}`, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Errore nella creazione della specialità:', error);
+                showAlert(`Errore nella creazione della specialità: ${error.message}`, 'error');
+            });
+
+            const addSpecialtyModal = bootstrap.Modal.getInstance(document.getElementById('addSpecialtyModal'));
+            addSpecialtyModal.hide();
+        }
+
+        // Function to show alert messages
+        // - It displays a success or error message based on the type of alert.
+        function showAlert(message, type) {
+            const alertElement = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+            const otherAlert = type === 'success' ? document.getElementById('errorAlert') : document.getElementById('successAlert');
+            const messageElement = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+            
+            otherAlert.classList.add('d-none');
+            
+            messageElement.textContent = message;
+            alertElement.classList.remove('d-none');
+            
+            setTimeout(() => {
+                alertElement.classList.add('d-none');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
